@@ -1,0 +1,136 @@
+.friendModal {
+    .modal-title.h4 {
+        font-family: "Cabin";
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 19.44px;
+        text-align: left;
+        color: rgba(26, 26, 26, 1);
+    }
+    .card {
+        padding: 20px 24px;
+        background: #FAFAFA;
+        border: 1px solid #F6F6F6;
+        h5 {
+            font-family: "Cabin";
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 29.16px;
+            text-align: left;
+        }
+        
+        label.form-check-label {
+            margin-left: 0;
+            position: relative;
+            bottom: 3px;
+            color: rgba(26, 26, 26, 0.4);
+            font-weight: 400;
+        }
+        ul {
+            li {
+                img.profileImg {
+                    width: 120px;
+                    height: 120px;
+                    min-width: 120px;
+                    border: 2px solid #FFFFFF
+                }
+                p {
+                    font-family: "Cabin";
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 19.44px;
+                    color: rgba(60, 60, 60, 1);
+                }
+            }
+        }
+        ul.friendInfo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 32px;
+            li {
+                padding: 8px;
+                background: #F3F3F3;
+                border: 1px solid #F6F6F6;
+                border-radius: 4px;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 17.01px;
+                text-align: left;
+                font-family: 'Cabin';
+                color: #1A1A1A;
+            }
+        }
+        .blockFriend {
+            background: #F3F3F3;
+            border: 1px solid #F6F6F6;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 20px;
+            h2 {
+                font-family: "Cabin";
+                font-size: 24px;
+                font-weight: 600;
+                line-height: 29.16px;
+            }
+            p {
+                font-family: "Cabin";
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 17.01px;
+                text-align: left;
+                color: rgba(26, 26, 26, 1);
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .friendModal.modal {
+        .modal-dialog {
+            max-width: 875px;
+        }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .friendModal {
+        .card {
+            ul {
+                li {
+                    img.profileImg {
+                        width: 80px;
+                        height: 80px;
+                        min-width: 80px;
+                    }
+                }
+            }
+            .blockFriend {
+                margin: 8px 0;
+            }
+        }
+    }
+    ul.friendUsers {
+        flex-direction: column;
+        button.blueButton {
+            position: absolute;
+            right: 20px;
+            top: 35px;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .friendModal {
+        .card {
+            padding: 10px;
+        }
+    }
+    ul.friendUsers {
+        button.blueButton {
+            right: 20px;
+            top: 25px;
+        }
+    }
+}

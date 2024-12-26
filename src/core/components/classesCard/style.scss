@@ -1,0 +1,62 @@
+.classesBlock {
+    background: rgba(249, 249, 249, 1);
+    border-radius: 16px;
+    .gameImg {
+        position: relative;
+        border-radius: 16px 16px 0 0;
+        img {
+            width: 100%;
+            border-radius: 16px 16px 0 0;
+        }
+        label.badge {
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background: rgba(18, 28, 39, 0.8);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 19.6px;
+            color: rgba(255, 255, 255, 1);
+        }
+    }
+    .gameContent {
+        padding: 8px 16px;
+        border-top: 1px solid rgba(242, 244, 247, 1);
+        
+        .title {
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 28.8px;
+            text-align: left;
+            text-decoration-line: underline;
+            text-decoration-style: solid;
+            color: rgba(3, 13, 18, 1);
+            word-break: break-word;
+            align-items: start;
+            display: flex;
+        }
+        .gameBtn {
+            background: rgba(18, 28, 39, 1);
+            padding: 7px 16px;
+            border-radius: 50px;
+        }
+        ul {
+            display: flex;
+            gap: 10px;
+            li {
+                background: rgba(234, 234, 234, 1);
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                padding: 8px 15px;
+                border-radius: 50px;
+                color: rgba(43, 43, 43, 1);
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 19.6px;
+            }
+        }
+    }
+}

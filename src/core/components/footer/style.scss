@@ -1,0 +1,93 @@
+.footer {
+    background: #FAFAFA;
+    .footerInner {
+        padding: 32px 0;
+        .logo_wrapper {
+            padding-right: 48px;
+        }
+        h4 {
+            font-family: "Cabin";
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 24px;
+            text-align: left;
+            color: #1A1A1A;
+            margin-bottom: 20px;
+        }
+        ul.footerMenu {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            a {
+                text-decoration: none;
+                color: #404143;
+                font-family: "Cabin";
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 19.2px;
+                text-align: center;
+            }
+        }
+        .socialMenu {
+            gap: 15px;
+            list-style: none;
+        }
+        ul.privacyMenu {
+            list-style: none;
+            gap: 20px;
+            a {
+                color: #404143;
+                font-family: "Cabin";
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 19.2px;
+                text-align: center;
+            }
+        }
+    }
+    .copyright {
+        background: #3C3C3C;
+        p {
+            font-family: "Cabin";
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19.2px;
+            color: #fff;
+            padding: 16px 0;
+        }
+    }
+}
+
+/* media Query start */
+
+@media only screen and (max-width: 991px) {
+    .footer {
+        .footerInner {
+            h4 {
+                margin: 20px 0 10px 0;
+                text-align: center;
+            }
+            .logo_wrapper {
+                padding-right: 10px;
+            }
+            .logo_links {
+                flex-direction: column;
+                align-content: center;
+            }
+            ul.footerMenu {
+                gap: 15px;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            .socialMenu, ul.privacyMenu {
+                display: flex;
+                justify-content: center;
+                margin: 10px 0;
+            }
+
+        }
+    }
+}

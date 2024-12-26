@@ -1,0 +1,249 @@
+.tabWrapper.nav.nav-pills {
+  gap: 16px;
+  border: 1px solid #f6f6f6;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  .nav-item {
+    width: calc(20% - 13px);
+    .nav-link.active {
+      background: #1a80c7;
+      svg,
+      path {
+        color: #fff;
+        fill: #fff;
+      }
+      h5 {
+        color: #fff;
+      }
+    }
+    .nav-link {
+      background: #fafafa;
+      box-shadow: 0 0 4px #0c0c0d0d;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #f6f6f6;
+      svg {
+        margin-bottom: 10px;
+      }
+      h5 {
+        font-family: "Cabin";
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.44px;
+        color: #1a1a1a;
+      }
+    }
+  }
+}
+h4 {
+  font-family: "Cabin";
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.44px;
+  text-align: left;
+}
+.title_Counter {
+  .pendingCounter {
+    border: 1px solid #f4d1d2;
+    padding: 5px 10px;
+    background: #f9e8e8;
+    border-radius: 8px;
+    font-family: "Cabin";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17.01px;
+    text-align: left;
+    color: #c71a1d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    span {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      background: #c71a1d;
+      color: #fff;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100px;
+      font-family: "Cabin";
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 17.01px;
+      text-align: left;
+    }
+  }
+}
+.tableWrapper {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.alerttable {
+  background: #f1f7fc;
+  border: 1px solid #f6f6f6;
+  table.table {
+    tr {
+      td {
+        background: #d6e8f5 !important;
+      }
+    }
+  }
+}
+.eventstable {
+  background: #fafafa;
+  border: 1px solid #f6f6f6;
+  table.table {
+    tr {
+      td {
+        background: #f3f3f3 !important;
+      }
+    }
+  }
+}
+table.table {
+  th {
+    font-family: "Cabin";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.44px;
+    text-align: left;
+    background: transparent;
+    border: none;
+  }
+  .table > tbody,
+  .table > tbody tr {
+    border-radius: 8px;
+  }
+  .table > tbody {
+    tr {
+      td {
+        &:first-child {
+          border-radius: 8px 0 0 8px;
+        }
+      }
+    }
+  }
+  .table > tbody {
+    tr {
+      td {
+        &:last-child {
+          border-radius: 0 8px 8px 0;
+        }
+      }
+    }
+  }
+  tr {
+    td {
+      // background: #d6e8f5 !important;
+      border: none;
+      button {
+        background: transparent;
+        border: none;
+      }
+    }
+  }
+}
+.friendsRequest {
+  background: #f1f7fc;
+  padding: 16px 20px;
+  border-radius: 8px;
+}
+
+
+
+.rightSidebar {
+  h4 {
+    font-family: "Cabin";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.44px;
+    color: #1a1a1a;
+  }
+  .pendingRequest {
+    background: #d6e8f5;
+    padding: 8px 12px;
+    border-radius: 8px;
+
+    .pendingFriendImg {
+      img {
+        border: 2px solid #ffffff;
+        border-radius: 100px;
+        margin-right: 10px;
+      }
+      h6 {
+        font-family: "Cabin";
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.44px;
+        text-align: left;
+        color: #1a1a1a;
+        margin-bottom: 0px;
+      }
+    }
+    .bothBtn {
+      button {
+        border: none;
+        background: transparent;
+      }
+    }
+  }
+  .digitalCard {
+    background-image: url('./digitalCardBg.jpg');
+    background-size: cover;
+    border-radius: 8px;
+    padding: 20px 16px;
+    margin: 24px 0;
+    h3 {
+        font-family: "Cabin";
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24.3px;
+    }
+    .shareBtn {
+        border: none;
+        background: none;
+    }
+    h4 {
+        font-family: "Cabin";
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24.3px;
+        color: #1A1A1A;
+        margin: 12px 0 8px 0;
+    }
+    .id_copy {
+        span.empId {
+            font-family: "Cabin";
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 19.44px;
+            color: #3C3C3C;
+            margin-right: 5px;
+        }
+    }
+    .cardInfo {
+        margin-top: 32px;
+        ul {
+            list-style: none;
+            background: #fffef3;
+            border: 1px solid #FFE500;
+            padding: 20px;
+            border-radius: 8px;
+            li {
+                font-family: "Cabin";
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 17.01px;
+                color: #3C3C3C;
+                padding-bottom: 12px;
+                &:last-child {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+  }
+}

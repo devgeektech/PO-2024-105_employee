@@ -1,0 +1,13 @@
+.notification-overlay{
+    top: 60px !important;
+    right: 27px !important;
+    left: unset !important;
+    .p-overlaypanel-content{
+        padding: 0px;
+    }
+}
+
+.notification-overlay::before{
+    content: "";
+    border: none;
+}

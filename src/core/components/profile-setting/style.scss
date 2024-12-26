@@ -1,0 +1,50 @@
+.proifleSubTab {
+    border-right: 1px solid #F6F6F6;
+    padding-right: 24px;
+    a.nav-link {
+        padding: 20px 16px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.44px;
+        color: rgba(43, 43, 43, 1);
+        margin-bottom: 12px;
+        background: rgba(249, 249, 249, 1);
+        text-transform: capitalize;
+        border-radius: 12px;
+    }
+    a.nav-link.active {
+        background: rgba(33, 148, 255, 1);
+        color: #fff;
+        svg, svg path {
+            fill: #fff;
+        }
+    }
+}
+
+/* media Query start */
+
+@media only screen and (max-width: 1199px) {
+    .proifleSubTab {
+        a.nav-link {
+            gap: 10px;
+            font-size: 14px;
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    .proifleSubTab {
+        border-right: none;
+        padding-right: 0px;
+        margin-bottom: 25px;
+        gap: 10px;
+        a.nav-link {
+            margin-bottom: 0px;
+        }
+    }
+    .group-img {
+        margin-bottom: 1rem;
+    }
+}

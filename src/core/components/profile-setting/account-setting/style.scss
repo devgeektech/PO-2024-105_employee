@@ -1,0 +1,329 @@
+.accountSettingTab {
+    .group-img.iconLeft {
+        input.commonInput.form-control {
+            padding-left: 40px;
+        }
+    }
+    .iconLeft.textareaWrap {
+        textarea.form-control {
+            padding-left: 40px;
+            background-color: rgb(236, 236, 236);
+        }
+    }
+    .iconLeft.textareaWrap {
+        label {
+            top: 32px;
+        }
+    }
+    h3 {
+        // font-family: "Cabin";
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 29.16px;
+        color:#1A1A1A;
+    }
+    .uploadImg {
+        width: 120px;
+        height: 120px;
+        border: 1px dashed #3C3C3C;
+        border-radius: 100px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .profileImageChange {
+            img {
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+            }
+        }
+        p {
+            // font-family: "Cabin";
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 17.01px;
+        }
+        .uploaddBtn {
+            position: absolute;
+            right: -5px;
+            top: 0px;
+            border: none;
+            background: transparent;
+            input[type="file"] {
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .bgFormColor {
+        background: #fafafa;
+        border-radius: 8px;
+    }
+    .formEditWrap {
+        label {
+            font-family: "Cabin";
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 19.2px;
+            margin-bottom: 12px;
+            color: #3C3C3C;
+            text-transform: capitalize;
+        }
+        ul.addedTime {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            li {
+                background: #EAEAEA;
+                border-radius: 20px;
+                padding: 5px 10px;
+                button {
+                    background: transparent;
+                    border: none;
+                    padding: 0;
+                }
+                label {
+                    margin-bottom: 0 !important;
+                    padding-left: 5px;
+                    font-size: 14px !important;
+                    color: #2B2B2B;
+                }
+            }
+        }
+        ul.daysCheckbox {
+            margin: 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            li {
+                display: flex;
+                label {
+                    padding: 12px 15px;
+                    margin-bottom: 0 !important;
+                    border: 1px solid #F2F4F7;
+                    background: #fff;
+                    border-radius: 50px;
+                    position: relative;
+                    z-index: 2;
+                    display: flex;
+                    align-items: center;
+                    input[type="checkbox"] {
+                        height: auto;
+                        margin-right: 8px;
+                        position: relative;
+                        z-index: 2;
+                        width: 16px;
+                        height: 16px;
+                        &:checked  {
+                            accent-color: #fff;
+                        }
+                        &:checked + span.day  {
+                            color: #fff;
+                        }
+                        &:checked + span.day + {
+                            span.bg {
+                                background: #2194FF;
+                                border-radius: 50px;
+                                width: 100%;
+                                height: 100%;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                bottom: 0;
+                                position: absolute;
+                                z-index: -1;
+                            }
+                            
+                        }
+                    }
+                    span.day {
+                        font-size: 14px;
+                        font-weight: 500;
+                        line-height: 19.6px;
+                        color: #2B2B2B;
+                    }
+                }
+            }
+        }
+        button.updateBtn {
+            background: #000;
+            border: 1px solid #000;
+            padding: 14px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19.2px;
+            color: #fff;
+            width: 120px;
+        }
+        ul.daysCheckbox.servicesWrap {
+            max-height: 160px;
+            overflow-y: auto;
+            align-items: flex-start;
+        }
+        ul.outerBlock {
+            ul.showImages {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+                li {
+                    width: calc(20% - 10px);
+                    button.crossBtn {
+                        position: absolute;
+                        right: 5px;
+                        top: 5px;
+                        border: none;
+                        background: transparent;
+                        padding: 0;
+                    }
+                    .image {
+                        img {
+                            border-radius: 16px;
+                            height: 125px;
+                            object-fit: cover;
+                        }
+                    }
+                    .removeGymFile{
+                        z-index: 999;
+                    }
+                }
+                .uploadBlock {
+                    border: 1px dashed #D9DBDE;
+                    background: #FFFFFF;
+                    border-radius: 16px;
+                    width: calc(20% - 10px);
+                    .upload {
+                            padding: 10px 15px;
+                            position: relative;
+                            input[type="file"] {
+                                position: absolute;
+                                opacity: 0;
+                                height: 100%;
+                                width: 100%;
+                                cursor: pointer;
+                                left: 0;
+                                right: 0;
+                                top: 0;
+                            }
+                            p {
+                                color: #000;
+                                font-size: 14px;
+                            }
+                            button{
+                                background: #000;
+                                border: 1px solid #000;
+                                padding: 8px 20px;
+                                border-radius: 50px;
+                                font-size: 14px;
+                                font-weight: 400;
+                                line-height: 19.2px;
+                                color: #fff;
+                            }
+                    }
+                }
+            }
+        }
+    }
+    button.updateBtn.btn.btn-primary {
+        background: #000;
+        border: 1px solid #000;
+        min-width: 240px;
+        padding: 20px;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+    }
+    textarea.addressTextarea {
+        height: 65px;
+    }
+}
+
+
+
+@media only screen and (max-width: 1400px) {
+    .accountSettingTab {
+        .formEditWrap {
+            ul.outerBlock {
+                ul.showImages {
+                    li {
+                        width: calc(25% - 10px);
+                    }
+                    .uploadBlock {
+                        width: calc(25% - 10px);
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1199px) {
+    .accountSettingTab {
+        .formEditWrap {
+            ul.outerBlock {
+                ul.showImages {
+                    li, .uploadBlock {
+                        width: calc(33.33% - 10px);
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 991px) {
+    .accountSettingTab {
+        .formEditWrap {
+            ul.outerBlock {
+                ul.showImages {
+                    li,.uploadBlock {
+                        width: calc(50% - 10px);
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 767px) {
+    .accountSettingTab {
+        .bgFormColor {
+            padding: 15px !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .accountSettingTab {
+        .formEditWrap {
+            ul.outerBlock {
+                ul.showImages {
+                    li {
+                        button.crossBtn {
+                            right: 20px;
+                            top: 20px;
+                        }
+                        .image {
+                            img {
+                                height: auto; 
+                            }
+                        }
+                    }
+                    li, .uploadBlock  {
+                        width: 100%;
+                    }
+                    .uploadBlock {
+                        .upload {
+                            padding: 30px 15px;
+                        }
+                    }
+                }
+            }
+            .updateWrap {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

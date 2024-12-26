@@ -1,0 +1,95 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build output
+dist/
+build/
+.built/
+.tmp/
+
+# Dependency directories for package managers
+bower_components/
+.idea/
+.vscode/
+.DS_Store
+
+# Runtime files
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+.nyc_output/
+
+# Environment variable files
+.env
+.env.*
+
+# Ignore database or session storage files
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Logs from testing tools
+test-results/
+test-output/
+cypress/screenshots/
+cypress/videos/
+
+# Ignore cache and temporary files
+.npm/
+.cache/
+.temp/
+*.swp
+*.swo
+*.swn
+*.sublime-workspace
+
+# Ignore OS-specific files
+Thumbs.db
+.DS_Store
+ehthumbs.db
+._*
+
+# IDE settings
+.idea/
+.vscode/
+*.code-workspace
+
+# Linting or formatting cache
+.eslintcache
+.prettiercache
+
+# Ignore package-lock or yarn.lock if not required for deterministic builds
+# package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore optional builds
+out/
+export/
+
+# Ignore debug files
+*.log
+*.log.*
+error.log
+*.stats.json
+
+# Ignore Proxies tools
+plumber/
+.env.local.*
+
+# Miscellaneous
+*.bak
+*.orig
