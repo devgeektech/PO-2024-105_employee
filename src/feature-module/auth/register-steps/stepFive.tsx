@@ -1,230 +1,189 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageWithBasePath from "../../../core/data/img/ImageWithBasePath";
-import BackIcon from "../../../icons/BackIcon";
-import LocationIcon from "../../../icons/LocationIcon";
-import CrossIcon from "../../../icons/CrossIcon";
-import { Autocomplete } from "@react-google-maps/api";
-const StepFive = ({ formik, locations, setLocations, onBackClick }: any) => {
-  const [address, setAddress] = useState("");
-  const [url, setUrl] = useState("");
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
-  const [autocomplete, setAutocomplete] = useState<any>(null);
-  const [city, setCity] = useState<any>("");
-  const [zipCode, setZipCode] = useState<any>("");
-  const [myBusinessAccount, setMyBusinessAccount] = useState<any>(false);
-  const handleLoad = (autoCompleteInstance: any) => {
-    setAutocomplete(autoCompleteInstance);
-  };
+import UserIcon from "../../../icons/UserIcon";
+import ErrorText from "../../../core/components/error-text";
+import EmailIcon from "../../../icons/EmailIcon";
+import PhoneIcon from "../../../icons/PhoneIcon";
+import TimerIcon from "../../../icons/TimerIcon";
 
+const StepFive = ({ formik, submitDetails }: any) => {
   useEffect(() => {
-    //
-  }, [setLocations, zipCode, city]);
+    formik.setFieldValue("email", submitDetails.email);
+  }, []);
 
-  const handlePlaceChanged = () => {
-    const place = autocomplete.getPlace();
-    const location = place.geometry?.location;
-    const url = place.url;
-    let zipCode = "";
-    let cityValue = "";
-    if (place.address_components) {
-      place.address_components.forEach((component: any) => {
-        const types = component.types;
-        if (types.includes("postal_code")) {
-          zipCode = component.long_name;
-          setZipCode(zipCode);
-        }
-        if (types.includes("locality")) {
-          cityValue = component.long_name;
-          setCity(cityValue);
-        }
-      });
-    }
-
-    if (place.place_id) {
-      setMyBusinessAccount(true);
-    }
-
-    if (location) {
-      let array = [];
-      array = locations;
-      if (location.lat() && location.lng()) {
-        const isDuplicate = array.some((loc: any) => loc.address === place.formatted_address);
-
-        if (!isDuplicate) {
-          array.push({
-            lat: location.lat(),
-            lng: location.lng(),
-            address: place.formatted_address,
-            url,
-            hasBusinessAccount: myBusinessAccount,
-          });
-          setLocations(array);
-        }
-      }
-    }
-  };
-
-  const deleteLocation = (indexToRemove: number) => {
-    setLocations((prevLocations: any[]) =>
-      prevLocations.filter((_, index) => index !== indexToRemove)
-    );
-  };
-
-  const addMoreLocations = () => {
-    setAddress("");
-    setZipCode("");
-    setCity("");
-  };
 
   return (
-    <div className="main-wrapper authendication-pages">
-      <div className="content">
-        <div className="container wrapper no-padding">
-          <div className="row no-margin vph-100">
-            <div className="col-12 col-sm-12  col-lg-4 no-padding">
-              <div className="dull-pg">
-                <div className="row no-margin vph-100 d-flex align-items-top justify-content-center">
-                  <div className="col-sm-10 col-md-10 col-lg-10 mx-auto">
-                    <header className="text-center position-relative">
-                    <span className="backBtn" onClick={onBackClick}>
-                        <BackIcon />
-                      </span>
-                      <ImageWithBasePath
-                        src="assets/img/logo.png"
-                        className="img-fluid"
-                        alt="Logo"
-                      />
-                    </header>
-                    <div className="processWrapper">
-                      <ul>
-                        <li className="active"></li>
-                        <li className="active"></li>
-                        <li className="active"></li>
-                        <li className="active"></li>
-                        <li></li>
-                        <li></li>
-                      </ul>
-                    </div>
-                    <div className="shadow-card steps">
-                      <h2 className="text-center">
-                        Tell us about your location
-                      </h2>
-                      <div className="tab-content" id="myTabContent">
-                        <div
-                          className="tab-pane fade show active"
-                          id="user"
-                          role="tabpanel"
-                          aria-labelledby="user-tab"
-                        >
-                          <form
-                            className="googleLocations"
-                            onSubmit={formik.handleSubmit}
+    <>
+      <div className="main-wrapper authendication-pages">
+        {/* Page Content */}
+        <div className="content">
+          <div className="container wrapper no-padding">
+            <div className="row no-margin vph-100">
+              <div className="col-12 col-sm-12 col-md-12 col-lg-4 no-padding">
+                <div className="dull-pg">
+                  <div className="row no-margin vph-100 d-flex align-items-center justify-content-center">
+                    <div className="col-sm-10 col-md-10 col-lg-10 mx-auto mb-2">
+                      <header className="text-center">
+                        <ImageWithBasePath
+                          src="assets/img/logo.png"
+                          className="img-fluid"
+                          alt="Logo"
+                        />
+                      </header>
+                      <div className="shadow-card">
+                        <h2 className="text-center">
+                          Add account details
+                        </h2>
+                        <div className="tab-content" id="myTabContent">
+                          <div
+                            className="tab-pane fade show active"
+                            id="user"
+                            role="tabpanel"
+                            aria-labelledby="user-tab"
                           >
-                            <div className="form-group">
-                              {locations.map((item: any, index: any) => (
-                                <div key={index} className="addressSelect">
-                                  <label className="mb-3 w-100">
-                                    Address {index + 1}{" "}
-                                    <button
-                                      type="button"
-                                      onClick={() => deleteLocation(index)}
-                                    >
-                                      <CrossIcon />
-                                    </button>
-                                  </label>
-                                  <Link
-                                    to={"#"}
-                                    target="_blank"
-                                    className="underline"
-                                  >
-                                    {item.address}
-                                  </Link>
-                                </div>
-                              ))}
-                            </div>
-                            <div className="form-group">
-                              <label className="mb-3 w-100">Address </label>
-                              <div className="group-img iconLeft email position-relative">
-                                <label>
-                                  <LocationIcon />
-                                </label>
-                                <Autocomplete
-                                  onLoad={handleLoad}
-                                  onPlaceChanged={handlePlaceChanged}
-                                >
+                            {/* Register Form */}
+                            <form autoComplete="off" onSubmit={formik.handleSubmit}>
+                              <div className="form-group">
+                                <div className="group-img iconLeft  position-relative">
+                                  <label><UserIcon /></label>
                                   <input
+                                    name="firstName"
+                                    id="firstName"
                                     type="text"
-                                    name="search"
-                                    className="commonInput form-control"
-                                    placeholder="Search for a place"
-                                    value={address}
-                                    onChange={(e) => setAddress(e.target.value)}
+                                    maxLength={64}
+                                    className="form-control commonInput"
+                                    placeholder="Your first name"
+                                    onChange={(ev: any) => {
+                                      console.log(ev.target.value, "firstName :")
+                                      formik.setFieldValue("firstName", ev.target.value);
+                                    }}
                                   />
-                                </Autocomplete>
+                                </div>
+                                <div className="text-start">
+                                  <ErrorText show={formik.errors.firstName && formik.touched.firstName} message={formik.errors?.firstName} />
+                                </div>
                               </div>
-                            </div>
-                            <div className="from-group">
-                              <div className="d-flex gap-3">
-                                <input
-                                  type="text"
-                                  name="zipCode"
-                                  className="commonInput form-control"
-                                  placeholder="Zip code"
-                                  onChange={(v) => setZipCode(v.target.value)}
-                                  value={zipCode}
-                                />
-                                <input
-                                  type="text"
-                                  name="city"
-                                  className="commonInput form-control"
-                                  placeholder="City"
-                                  value={city}
-                                  onChange={(v) => setCity(v.target.value)}
-                                />
-                              </div>
-                            </div>
 
-                            <div className="form-group d-flex justify-content-end mt-2">
-                              <p className="mb-0">
-                                You have more than 1 location?
-                                <button
-                                  onClick={addMoreLocations}
-                                  className="addEvent"
-                                  type="button"
-                                >
-                                  + Add more location
-                                </button>
-                              </p>
-                            </div>
-                            <button
-                              type="submit"
-                              className="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block"
-                            >
-                              Continue
-                            </button>
-                          </form>
+                              <div className="form-group">
+                                <div className="group-img iconLeft  position-relative">
+                                  <label><UserIcon /></label>
+                                  <input
+                                    name="lastName"
+                                    id="lastName"
+                                    type="text"
+                                    maxLength={64}
+                                    className="form-control commonInput"
+                                    placeholder="Your last name"
+                                    onChange={(ev: any) => {
+                                      console.log(ev.target.value, "lastName :")
+                                      formik.setFieldValue("lastName", ev.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <div className="text-start">
+                                  <ErrorText show={formik.errors.lastName && formik.touched.lastName} message={formik.errors?.lastName} />
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <div className="group-img iconLeft  position-relative">
+                                  <label><EmailIcon /></label>
+                                  <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    maxLength={64}
+                                    className="form-control commonInput"
+                                    placeholder="Email"
+                                    disabled={true}
+                                    value={submitDetails?.email}
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <div className="group-img iconLeft  position-relative">
+                                  <label><PhoneIcon /></label>
+                                  <input
+                                    type="number"
+                                    id="phone"
+                                    name="phone"
+                                    maxLength={64}
+                                    className="form-control commonInput"
+                                    placeholder="Phone number"
+                                    onChange={(ev: any) => {
+                                      formik.setFieldValue("phone", ev.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <div className="text-start">
+                                  <ErrorText show={formik.errors.phone && formik.touched.phone} message={formik.errors?.phone} />
+                                </div>
+                              </div>
+
+                              <div className="form-group">
+                                <div className="group-img iconLeft  position-relative">
+                                  <label><TimerIcon /></label>
+                                  <input
+                                    type="number"
+                                    id="age"
+                                    name="age"
+                                    maxLength={2}
+                                    className="form-control commonInput"
+                                    placeholder="Age"
+                                    onChange={(ev: any) => {
+                                      formik.setFieldValue("age", ev.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <div className="text-start">
+                                  <ErrorText show={formik.errors.age && formik.touched.age} message={formik.errors?.age} />
+                                </div>
+                              </div>
+
+                              <button
+                                // disabled={error? true: false}
+                                className="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block"
+                                type="submit"
+                              >
+                                Continue
+                              </button>
+                            </form>
+                            {/* /Register Form */}
+                          </div>
+                          <div
+                            className="tab-pane fade"
+                            id="coach"
+                            role="tabpanel"
+                            aria-labelledby="coach-tab"
+                          ></div>
                         </div>
                       </div>
+                      {/* <div className="bottom-text text-center">
+                        <p> Already have an account?
+                          <Link to={"/auth/login"} className="text-underline">Sign in</Link>
+                        </p>
+                      </div> */}
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-12 col-sm-12 col-lg-8 no-padding">
-              <div className="banner-bg login">
-                <div className="row no-margin h-100">
-                  <div className="col-sm-10 col-md-10 col-lg-10 mx-auto">
-                    <div className="h-100 d-flex justify-content-center align-items-center"></div>
+              <div className="col-12 col-sm-12 col-md-12 col-lg-8 no-padding">
+                <div className="banner-bg register">
+                  <div className="row no-margin h-100">
+                    <div className="col-sm-10 col-md-10 col-lg-10 mx-auto">
+                      <div className="h-100 d-flex justify-content-center align-items-center"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {/* /Page Content */}
       </div>
-    </div>
+    </>
   );
 };
 

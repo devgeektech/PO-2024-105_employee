@@ -96,6 +96,7 @@ export const LANG={
     FRIEND:"Friend",
     OLD_PASSWORD_IS_REQUIRED:"Old password is required",
     NEW_PASSWORD_IS_REQUIRED:"New password is required",
+    MINIMUM_AGE_LIMIT:"The restriction is 2 characters",
 
 
     ACCEPT:"Akzeptieren",

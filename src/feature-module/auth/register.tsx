@@ -9,11 +9,8 @@ import StepFirst from "./register-steps/stepFirst";
 import StepSecond from "./register-steps/stepSecond";
 import StepThird from "./register-steps/stepThird"
 import StepFour from "./register-steps/stepFour"
-import StepSix from "./register-steps/stepSix";
-import { addAccountDetails, checkCompanyStatus, registerFirstStep, sendCompanyReferral, verifyOtp } from "../../services/onBoardingService";
+import { addAccountDetails, checkCompanyStatus, sendCompanyReferral, verifyOtp } from "../../services/onBoardingService";
 import StepFive from "./register-steps/stepFive";
-import StepSeven from "./register-steps/stepSeven";
-import ThankYou from "./register-steps/thankYou";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -24,14 +21,21 @@ const stepFirstInitialValues = {
 const stepSecondInitialValues = {
   email: ""
 }
+const stepThirdInitialValues = {
+  otp: ""
+}
 const stepFourInitialValues = {
   domainName: "",
+}
+const stepFiveInitialValues = {
+  firstName: "",
+  lastName: "",
+  phone: "",
+  age: ""
 }
 
 const stepFirstRegisterSchema = Yup.object().shape({
   companyName: Yup.string().required("Field is required"),
-  // businessWebsite: Yup.string(),
-  // phone: Yup.string().min(10, LANG.MINIMUM_LIMIT_PHONE_CHAR).max(13, LANG.MAXIMUM_LIMIT_HUNDRED_CHAR).matches(phoneRegExp, 'Phone number is not valid'),
 });
 
 const stepSecondRegisterSchema = Yup.object().shape({
@@ -39,20 +43,17 @@ const stepSecondRegisterSchema = Yup.object().shape({
 });
 
 const stepThirdRegisterSchema = Yup.object().shape({
-  wellnessTypeId: Yup.string().required("Field is required"),
 });
 
 const stepFourRegisterSchema = Yup.object().shape({
   domainName: Yup.string().required("Domain name is required"),
 });
 
-const stepFiveRegisterSchema = Yup.object().shape({});
-const stepSixRegisterSchema = Yup.object().shape({
-  services: Yup.array().min(1, "At least one service must be selected").required("Field is required"),
-});
-
-const stepSevenRegisterSchema = Yup.object().shape({
-  checkinRate: Yup.string().required("Field is required"),
+const stepFiveRegisterSchema = Yup.object().shape({
+  firstName: Yup.string().required("Field is required"),
+  lastName: Yup.string().required("Field is required"),
+  phone: Yup.string().min(10, LANG.MINIMUM_LIMIT_PHONE_CHAR).max(13, LANG.MAXIMUM_LIMIT_HUNDRED_CHAR).matches(phoneRegExp, 'Phone number is not valid'),
+  age: Yup.string().min(2, LANG.MINIMUM_AGE_LIMIT).max(2, LANG.MINIMUM_AGE_LIMIT),
 });
 
 
@@ -65,8 +66,7 @@ const Signin = () => {
   const [isVerifiedBussiness, setIsVerifiedBussiness] = useState<any>(false);
   const [companyName, setCompanyName] = useState<any>("");
   const [domainName, setDomainName] = useState<any>("");
-
-
+  const [otp, setOtp] = useState(["", "", "", ""]);
   const [submitDetails, setSubmitDetails] = useState({
     // name: "",
     companyName: "",
@@ -74,7 +74,6 @@ const Signin = () => {
     // businessWebsite: "",
     // phone: "",
   });
-
 
   useEffect(() => {
   }, [setStep])
@@ -109,9 +108,8 @@ const Signin = () => {
 
         if (result.status == 200) {
           if (result?.data?.data?.isCompanyVerified) {
-            toast.error(result.data.responseMessage);
-            // setStep(3);
-
+            toast.success(result.data.responseMessage);
+            setStep(3);
           }
           else {
             toast.error(result.data.responseMessage);
@@ -128,8 +126,37 @@ const Signin = () => {
     },
   });
 
+  const stepthirdFormik = useFormik({
+    initialValues: stepThirdInitialValues,
+    validationSchema: stepThirdRegisterSchema,
+    onSubmit: async (values, { setSubmitting }) => {
+      setLoading(true);
+      try {
+        const otpString = otp.join("");        
+        if (otpString.length === 4 && submitDetails.email != '') {
+          const result: any = await verifyOtp({ email: submitDetails.email, otp: otpString });
+          if (result.status == 200) {
+            toast.success("Otp Verified Successfully");
+            setError(null)
+            setStep(5);
+          }
+          setOtp(["", "", "", ""]);
+        } 
+        else if (otpString.length < 4){
+          setError("Please enter valid Otp")
+        }
+      } catch (error: any) {
+        if (error?.response?.data?.responseCode == 400) {
+          toast.error(error?.response?.data?.responseMessage);
+          setError("Make sure it maches the one in your email")
+        }
+        console.log(error, loading)
+        setSubmitting(false);
+        setLoading(false);
+      }
+    },
+  });
 
-  
   const stepFourFormik = useFormik({
     initialValues: stepFourInitialValues,
     validationSchema: stepFourRegisterSchema,
@@ -157,24 +184,21 @@ const Signin = () => {
     },
   });
 
-  const stepSevenFormik = useFormik({
-    initialValues: stepSecondInitialValues,
-    validationSchema: stepSevenRegisterSchema,
+  const stepFiveFormik = useFormik({
+    initialValues: stepFiveInitialValues,
+    validationSchema: stepFiveRegisterSchema,
     onSubmit: async (values, { setSubmitting }) => {
-      console.log("Selected Value stepSeven :", values);
       setLoading(true);
       try {
         let partnerData = {
           ...submitDetails,
-          isGoogleVerified: isVerifiedBussiness,
-          ...values,
-        };
+          ...values
+        };        
         const result = await addAccountDetails(partnerData);
 
         if (result.status == 200) {
           toast.success(result.data.responseMessage);
-
-          setStep(8);
+          navigate("/auth/login");
         } else if (result.status == 404) {
           toast.error("Something went wrong");
         }
@@ -206,18 +230,14 @@ const Signin = () => {
       case 2: {
         return <StepSecond formik={stepSecondFormik} onBackClick={onBackClick} />;
       }
-
-
+      case 3: {
+        return <StepThird formik={stepthirdFormik} otp={otp} setOtp={setOtp} submitDetails={submitDetails} error={error} setError={setError}/>;
+      }
       case 4: {
         return <StepFour formik={stepFourFormik} submitDetails={submitDetails} />;
       }
-
-
-      // case 7: {
-      //   return <StepSeven formik={stepSevenFormik} checkinRate={checkinRate} setCheckinRate={setCheckinRate} onBackClick={onBackClick}/>;
-      // }
-      case 8: {
-        return <ThankYou email={submitDetails.email} />;
+      case 5: {
+        return <StepFive formik={stepFiveFormik} submitDetails={submitDetails} />;
       }
     }
   }

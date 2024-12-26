@@ -26,7 +26,6 @@ import ForgotPassword from "../auth/forgot-password";
 import Gallery from "../pages/gallery";
 import Signin from "../auth/register";
 import Login from "../auth/login";
-
 import ChangePassword from "../auth/change-password";
 import Maintenance from "../pages/maintenance";
 import VerifyAccountPage from "../auth/verify-account";
@@ -34,15 +33,10 @@ import SelectRoles from "../auth/select-roles";
 import Settings from "../settings/page";
 import ValidationRedirect from "../auth/validation-redirect";
 import ConfirmEmail from "../auth/confirm-email";
-import StepZero from "../auth/register-steps/stepFirstOld";
-import StepSeven from "../auth/register-steps/stepSeven";
-import StepSix from "../auth/register-steps/stepSix";
 import StepFive from "../auth/register-steps/stepFive";
 import StepFour from "../auth/register-steps/stepFirst";
 import StepThird from "../auth/register-steps/stepThird";
 import StepSecond from "../auth/register-steps/stepSecond";
-import StepFirst from "../auth/register-steps/stepFirstOld";
-import ThankYou from "../auth/register-steps/thankYou";
 import EditSetting from "../settings/Edit/page";
 import Classes from "../classes/page";
 import DetailClass from "../classes/detail/page";
@@ -50,6 +44,7 @@ import CreateClass from "../classes/create/page";
 import ChangePasswordTabContent from "../../core/components/profile-setting/change-password/page";
 import Booking from "../booking/page";
 import CheckIn from "../check-in/page";
+import StepFirst from "../auth/register-steps/stepFirst";
 
 const routes = all_routes;
 
@@ -296,26 +291,8 @@ const withoutHeaderRoutes = [
     element: <StepFive />,
     route: Route,
   },
-  {
-    path: routes.stepSix,
-    element: <StepSix />,
-    route: Route,
-  },
-  {
-    path: routes.stepSeven,
-    element: <StepSeven />,
-    route: Route,
-  },
-  {
-    path: routes.stepZero,
-    element: <StepZero />,
-    route: Route
-  },
-  {
-    path: routes.thankYou,
-    element: <ThankYou />,
-    route: Route,
-  },
+  
+  
 
 ];
 export { publicRoutes, withoutHeaderRoutes };
