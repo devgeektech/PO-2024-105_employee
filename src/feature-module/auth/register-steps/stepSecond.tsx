@@ -1,156 +1,115 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ImageWithBasePath from "../../../core/data/img/ImageWithBasePath";
+import UserIcon from "../../../icons/UserIcon";
+import BusinessIcon from "../../../icons/BusinessIcon";
+import EmailIcon from "../../../icons/EmailIcon";
+import GlobeIcon from "../../../icons/GlobeIcon";
+import PhoneIcon from "../../../icons/PhoneIcon";
+import ErrorText from "../../../core/components/error-text";
 import BackIcon from "../../../icons/BackIcon";
-import { resendVerifyCode } from "../../../services/onBoardingService";
-import { toast } from "react-toastify";
-import { LANG } from "../../../constants/language";
-import { AxiosError } from "axios";
 
-const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError, onBackClick }: any) => {
-  const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
-  const handleOtpChange = (index: number, value: string) => {
-    if (/^[0-9]?$/.test(value)) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
-      formik.setFieldValue("otp", newOtp);
-      if (value !== "" && index < otp.length - 1) {
-        inputRefs.current[index + 1]?.focus();
-      }
-    }
-  };
+const StepSecond = ({ formik, onBackClick }: any) => {
 
-  const handleBackspace = (index: number, value: string) => {
-    if (value === "" && index > 0) {
-      inputRefs.current[index - 1]?.focus();
-    }
-  };
-
-
-  const handleResendCode = async () => {
-    // Logic to resend the code
-    try {
-      const result: any = await resendVerifyCode({ email: submitDetails.email });
-      if (result.status == 200) {
-        toast.success(LANG.OTP_SEND);
-        setError(null)
-      }
-      setOtp(["", "", "", ""]);
-    } 
-    catch (error) {
-      if (error instanceof AxiosError) {
-        toast.error(error.response?.data?.responseMessage)
-      }
-      setError(""); // Reset error
-    }
-  };
 
   return (
-    <div className="main-wrapper authendication-pages">
-      <div className="content">
-        <div className="container wrapper no-padding">
-          <div className="row no-margin vph-100">
-            <div className="col-12 col-sm-12  col-lg-4 no-padding">
-              <div className="dull-pg">
-                <div className="row no-margin vph-100 d-flex align-items-top justify-content-center">
-                  <div className="col-sm-10 col-md-10 col-lg-10 mx-auto">
-                    <header className="text-center position-relative">
-                      <span className="backBtn" onClick={onBackClick}>
-                        <BackIcon />
-                      </span>
-                      <ImageWithBasePath
-                        src="assets/img/logo.png"
-                        className="img-fluid"
-                        alt="Logo"
-                      />
-                    </header>
-                    <div className="shadow-card">
-                      <h2 className="text-center">Enter your verification code</h2>
-                      <p className="text-center">
-                        We sent it to {submitDetails.email}
-                      </p>
-                      <div className="tab-content" id="myTabContent">
-                        <div
-                          className="tab-pane fade show active"
-                          id="user"
-                          role="tabpanel"
-                          aria-labelledby="user-tab"
-                        >
-                          {/* Login Form */}
-                          <form autoComplete="off" onSubmit={formik.handleSubmit}>
-                            <div className="form-group OtpForm">
-                              <div className="d-flex groupInputs justify-content-center">
-                                {otp.map((digit: any, index: any) => (
+    <>
+      <div className="main-wrapper authendication-pages">
+        {/* Page Content */}
+        <div className="content">
+          <div className="container wrapper no-padding">
+            <div className="row no-margin vph-100">
+              <div className="col-12 col-sm-12 col-md-12 col-lg-4 no-padding">
+                <div className="dull-pg">
+                  <div className="row no-margin vph-100 d-flex align-items-center justify-content-center">
+                    <div className="col-sm-10 col-md-10 col-lg-10 mx-auto mb-2">
+                      <header className="text-center">
+                        <span className="backBtn" onClick={onBackClick}>
+                          <BackIcon />
+                        </span>
+                        <ImageWithBasePath
+                          src="assets/img/logo.png"
+                          className="img-fluid"
+                          alt="Logo"
+                        />
+                      </header>
+                      <div className="processWrapper">
+                        <ul>
+                          <li className="active"></li>
+                          <li></li>
+                        </ul>
+                      </div>
+
+                      <div className="shadow-card">
+                        <h2 className="text-center">
+                          Enter your work email address
+                        </h2>
+                        <div className="tab-content" id="myTabContent">
+                          <div
+                            className="tab-pane fade show active"
+                            id="user"
+                            role="tabpanel"
+                            aria-labelledby="user-tab"
+                          >
+                            {/* Register Form */}
+                            <form autoComplete="off" onSubmit={formik.handleSubmit}>
+
+                              <div className="form-group">
+                                <div className="group-img iconLeft  position-relative">
+                                  <label><EmailIcon /></label>
                                   <input
-                                    className={error ? "border-warning" : ""}
-                                    key={index}
-                                    type="text"
-                                    placeholder="_"
-                                    maxLength={1}
-                                    value={digit}
-                                    onChange={(e) =>
-                                      handleOtpChange(index, e.target.value)
-                                    }
-                                    onKeyDown={(e) => {
-                                      if (e.key === "Backspace") {
-                                        handleBackspace(index, e.currentTarget.value);
-                                      }
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    maxLength={64}
+                                    className="form-control commonInput"
+                                    placeholder="Email"
+                                    onChange={(ev: any) => {
+                                      formik.setFieldValue("email", ev.target.value);
                                     }}
-                                    ref={(el) => (inputRefs.current[index] = el)}
                                   />
-                                ))}
+                                </div>
+                                <div className="text-start">
+                                  <ErrorText show={formik.errors.email && formik.touched.email} message={formik.errors?.email} />
+                                </div>
                               </div>
-                              {error && (
-                                <p
-                                  className="text-center mt-2 text-warning"
-                                >
-                                  ⚠ {error}
-                                </p>
-                              )}
-                            </div>
-                            <div className="text-center mt-3">
+
                               <button
-                                type="button"
-                                className="btn btn-link p-0"
-                                style={{
-                                  color: "#0081FF",
-                                  textDecoration: "underline",
-                                  cursor: "pointer",
-                                }}
-                                onClick={handleResendCode}
+                                className="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block"
+                                type="submit"
                               >
-                                Get a new code
+                                Continue
                               </button>
-                            </div>
-                            <button
-                              type="submit"
-                              className="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block"
-                            >
-                              Continue
-                            </button>
-                          </form>
-                          {/* /Login Form */}
+                            </form>
+                            {/* /Register Form */}
+                          </div>
+                          <div
+                            className="tab-pane fade"
+                            id="coach"
+                            role="tabpanel"
+                            aria-labelledby="coach-tab"
+                          ></div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="col-12 col-sm-12 col-lg-8 no-padding">
-              <div className="banner-bg login">
-                <div className="row no-margin h-100">
-                  <div className="col-sm-10 col-md-10 col-lg-10 mx-auto">
-                    <div className="h-100 d-flex justify-content-center align-items-center"></div>
+              <div className="col-12 col-sm-12 col-md-12 col-lg-8 no-padding">
+                <div className="banner-bg register">
+                  <div className="row no-margin h-100">
+                    <div className="col-sm-10 col-md-10 col-lg-10 mx-auto">
+                      <div className="h-100 d-flex justify-content-center align-items-center"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {/* /Page Content */}
       </div>
-    </div>
+    </>
   );
 };
 
