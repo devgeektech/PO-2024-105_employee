@@ -13,9 +13,9 @@ export const isLoginUser = () => {
     return getStorageItem('token') ? true : false;
 }
 
-export const getUserById = async () => {
+export const getUserProfile = async () => {
     const id = getUserID();
-    return http.get(`/users/profile/${id}`);
+    return http.get(`/employee/profile`);
 }
 
 export const updateUserById = async (payload: any) => {

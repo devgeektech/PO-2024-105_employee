@@ -178,7 +178,7 @@ const publicRoutes = [
     route: Route,
   },
   {
-    path: routes.classes,
+    path: routes.subscription,
     element: <Classes/>,
     route: Route,
   },

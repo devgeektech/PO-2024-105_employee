@@ -9,8 +9,9 @@ export const FORGOT_PASSWORD_URL = `/auth/partner/forgotPassword`;
 export const CHANGE_PASSWORD_URL = `/auth/partner/changePassword`;
 
 export const loginUser = async (payload: any) => {
-  return http.post('/auth/partner/login', payload);
+  return http.post('/auth/employee/login', payload);
 }
+
 
 export const loginByToken = async (payload: any) => {
   return http.post('/auth/member/token_login', payload);

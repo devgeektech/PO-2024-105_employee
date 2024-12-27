@@ -6,7 +6,7 @@ import CalendarIcon from "../../../icons/CalendarIcon";
 import TeamBlackIcons from "../../../icons/TeamBlackIcons";
 import ProfileBlackIcon from "../../../icons/ProfileBlackIcon";
 import ProfileTabContent from "../../../core/components/profile-setting/page";
-import { getUserById } from "../../../services/user.service";
+import { getUserProfile } from "../../../services/user.service";
 import { LANG } from "../../../constants/language";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TaskIcon from "../../../icons/TaskIcon";
@@ -32,7 +32,7 @@ export default function TrainerTab() {
 
   const getUserDetails = async () => {
     try {
-      const result = await getUserById();
+      const result = await getUserProfile();
       setUserDetail(result?.data?.data);
     } catch (error) {
       console.error(error);

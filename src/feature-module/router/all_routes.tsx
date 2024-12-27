@@ -2,8 +2,25 @@
 export const all_routes = {
   home: "/index",
 
+  // Register steps Routes
+  stepOne: "/auth/stepOne",
+  stepTwo: "/auth/stepTwo",
+  stepThree: "/auth/stepThree",
+  stepFour: "/auth/stepFour",
+  stepFive: "/auth/stepFive",
+
+  thankYou: "/auth/thank-you",
+
+  // Subscription Routes
+  subscription: "/subscription",
+
+  classesDetail: "/classes/detail/:id",
+  classesCreate: "/classes/create",
+  classesEdit: "/classes/edit/:id",
+  settingChangePassword: "/settings/changePassword",
 
 
+  
   // Blog Routes
   blogGrid: "/blog/blog-grid",
   blogGridSidebarRight: "/blog/blog-grid-sidebar-right",
@@ -116,26 +133,10 @@ export const all_routes = {
   verifyAccount: "/auth/verification",
   confirmEmail: "/auth/confirm-email",
 
-  // Register steps Routes
-  stepOne: "/auth/stepOne",
-  stepTwo: "/auth/stepTwo",
-  stepThree: "/auth/stepThree",
-  stepFour: "/auth/stepFour",
-  stepFive: "/auth/stepFive",
-  stepSix: "/auth/stepSix",
-  stepSeven: "/auth/stepSeven",
-  thankYou: "/auth/thank-you",
-  stepZero: "/auth/StepZero",
 
   // setting Edit Routes
   settingEdit: "/settings",
 
-  // Classes Routes
-  classes: "/classes",
-  classesDetail: "/classes/detail/:id",
-  classesCreate: "/classes/create",
-  classesEdit: "/classes/edit/:id",
-  settingChangePassword: "/settings/changePassword",
 
   booking: "/booking",
   checkIn: "/check-in",
