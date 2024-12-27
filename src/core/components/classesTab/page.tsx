@@ -11,7 +11,7 @@ import TimerIcon from "../../../icons/TimerIcon";
 import GroupUsersIcon from "../../../icons/GroupUsersIcon";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import { addClass, editClass } from "../../../services/classes.service";
+import { addClass, editClass } from "../../../services/subscriptions.service";
 import { getServicelist } from "../../../services/services.service";
 import Select from 'react-select';
 import moment from "moment";

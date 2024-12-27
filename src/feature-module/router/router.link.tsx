@@ -38,13 +38,13 @@ import StepFour from "../auth/register-steps/stepFirst";
 import StepThird from "../auth/register-steps/stepThird";
 import StepSecond from "../auth/register-steps/stepSecond";
 import EditSetting from "../settings/Edit/page";
-import Classes from "../classes/page";
-import DetailClass from "../classes/detail/page";
-import CreateClass from "../classes/create/page";
+import DetailClass from "../subscription/detail/page";
+import CreateClass from "../subscription/create/page";
 import ChangePasswordTabContent from "../../core/components/profile-setting/change-password/page";
 import Booking from "../booking/page";
 import CheckIn from "../check-in/page";
 import StepFirst from "../auth/register-steps/stepFirst";
+import Subscription from "../subscription/page";
 
 const routes = all_routes;
 
@@ -179,7 +179,7 @@ const publicRoutes = [
   },
   {
     path: routes.subscription,
-    element: <Classes/>,
+    element: <Subscription/>,
     route: Route,
   },
   {

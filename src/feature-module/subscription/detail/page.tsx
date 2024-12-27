@@ -9,7 +9,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import EditIcon from '../../../icons/EditIcon';
 import EditGreyIcon from '../../../icons/EditGreyIcon';
 import { all_routes } from '../../router/all_routes';
-import { getClassDetails } from '../../../services/classes.service';
+import { getClassDetails } from '../../../services/subscriptions.service';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 
