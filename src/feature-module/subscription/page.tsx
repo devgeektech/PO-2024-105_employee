@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import "./style.scss";
-import SearchIcon from '../../icons/SearchIcon';
-import { Link, useNavigate } from 'react-router-dom';
-import { Dropdown, Nav, Pagination, Tab } from 'react-bootstrap';
-import FilterIcon from '../../icons/FilterIcon';
+import { Link } from 'react-router-dom';
+import {  Tab } from 'react-bootstrap';
 import ClassesCard from '../../core/components/classesCard';
 import { getSubscriptionList } from '../../services/subscriptions.service';
-import { CommonPagination } from '../../core/components/common/CommnPagination';
 import { all_routes } from '../router/all_routes';
 
 
 export default function Subscription() {
     const route = all_routes;
     const [subscriptionList, setSubscriptionList] = useState<any[]>([]);
-    const [totalItems, setTotalItems] = useState<number>(0);  // Track total number of items
-    const itemsPerPage = 8; // Number of items per page
-    const navigate = useNavigate();
-
 
     useEffect(() => {
         getSubscriptions();
@@ -26,22 +19,10 @@ export default function Subscription() {
         try {
             const result = await getSubscriptionList();
             setSubscriptionList(result?.data?.data || []);
-            setTotalItems(result?.data?.length || 0)
         } catch (error) {
             console.error(error);
         }
     };
-
-    // Paginated data for the current page
-    const handlePageChange = (page: number) => {
-        getSubscriptions()
-    };
-
-    const classDetails = (id: any) => {
-        navigate('/classes/detail', { state: { id } });
-    };
-
-    console.log('subscriptionList ========= ', subscriptionList);
 
     return (
         <div className='classesWrapper'>
@@ -57,38 +38,32 @@ export default function Subscription() {
                     <Tab.Container id="left-tabs-example" defaultActiveKey="all">
 
                         <Tab.Content>
-                            <Tab.Pane >
-                                <div className='container-fluid'>
-                                    <div className='row'>
-                                        {subscriptionList &&
-                                            subscriptionList.map((item, index) => {
-                                                return <div className='col-md-4 col-sm-6 col-lg-3 mb-4' key={index} >
-                                                    {/* <Link onClick={() => classDetails(item._id)} to="#"> */}
+                            <Tab.Pane>
+                                <div className="container-fluid">
+                                    <div className="row">
+                                        {subscriptionList.length > 0 ? (
+                                            subscriptionList.map((item, index) => (
+                                                <div
+                                                    className="col-md-4 col-sm-6 col-lg-3 mb-4"
+                                                    key={index}
+                                                >
                                                     <Link to={`/classes/detail/${item?._id}`}>
                                                         <ClassesCard
-                                                            className={item?.description}
-                                                            image={false}
-                                                            status={item?.status}
-                                                            classType={item?.classType}
-                                                            participants={item?.participants}
-                                                            showImg={false}
-                                                            classId={item?._id}
+                                                            description={item?.description || 'No description available'}
+                                                            status={item?.status || 'N/A'}
+                                                            price={item?.classType || 0}
+                                                            subscriptionId={item?._id}
                                                         />
                                                     </Link>
                                                 </div>
-                                            })}
+                                            ))
+                                        ) : (
+                                            <p>No subscriptions found.</p>
+                                        )}
                                     </div>
                                 </div>
                             </Tab.Pane>
                         </Tab.Content>
-
-                        <div className="paginationWrapper">
-                            <CommonPagination
-                                totalRecords={totalItems}
-                                recordsPerPage={itemsPerPage}
-                                onPageChange={handlePageChange}
-                            />
-                        </div>
                     </Tab.Container>
                 </div>
             </div>
