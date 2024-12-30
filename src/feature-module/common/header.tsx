@@ -219,7 +219,10 @@ const Header = () => {
                       <Dropdown.Menu>
                         <div>
                           <div className="linksWrap">
-                                <Dropdown.Item>{user?.userDetail?.firstName}</Dropdown.Item>
+                                <Dropdown.Item>
+                                <Link to={routes.settingEdit}>Profile Management</Link>
+                                  {/* {user?.userDetail?.firstName} */}
+                                  </Dropdown.Item>
                           </div>
                           <div className="logoutBtnWrap">
                             <Dropdown.Item><LogutIcon /> {LANG.LOGOUT}</Dropdown.Item>

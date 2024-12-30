@@ -14,6 +14,14 @@ export const all_routes = {
   // Subscription Routes
   subscription: "/subscription",
 
+
+  settingEdit: "/settings",
+  Settings: "/settings/profile",
+
+
+
+
+
   classesDetail: "/classes/detail/:id",
   classesCreate: "/classes/create",
   classesEdit: "/classes/edit/:id",
@@ -113,7 +121,6 @@ export const all_routes = {
 
   // trainer
 
-  Settings: "/settings/profile",
 
   // Listing Routes
   listingGridSidebar: "/listing/listing-grid-sidebar",
@@ -135,7 +142,6 @@ export const all_routes = {
 
 
   // setting Edit Routes
-  settingEdit: "/settings",
 
 
   booking: "/booking",
