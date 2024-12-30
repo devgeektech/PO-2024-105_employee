@@ -207,7 +207,7 @@ const SubscriptionSetting = ({ userDetail }: any) => {
                     }
                     <Form.Group className="mb-3 flex-start d-flex">
                         <Button type="button" className="addRelationBtn" onClick={() => formik.setFieldValue('siblingDetails',
-                            [...formik.values.siblingDetails, { email: "", name: "", dob: "" }])}><span>+</span>{LANG.ADD_SIBLING}</Button>
+                            [...formik.values.siblingDetails, { email: "", name: "", dob: "" }])}><span>+</span></Button>
                     </Form.Group>
                 </VisibilityBox>
                 <Button type='submit' disabled={hasError()} className='updateBtn mt-4'>{LANG.UPDATE}</Button>

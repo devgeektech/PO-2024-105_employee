@@ -18,6 +18,13 @@ export const getUserProfile = async () => {
     return http.get(`/employee/profile`);
 }
 
+export const updateUserProfile = async (payload: any) => {
+    return http.put(`/employee/updateProfile`, payload);
+}
+
+
+
+
 export const updateUserById = async (payload: any) => {
     const id = getUserID();
     return http.put(`/users/${id}`, payload);
