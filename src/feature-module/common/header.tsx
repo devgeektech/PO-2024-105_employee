@@ -57,6 +57,14 @@ const Header = () => {
       hasSubRoute: false,
       showSubRoute: false
     },
+    // {
+    //   tittle: "Profile",
+    //   showAsTab: false,
+    //   separateRoute: true,
+    //   routes: routes.profile,
+    //   hasSubRoute: false,
+    //   showSubRoute: false
+    // },
 
     // {
     //   tittle: "Dashboard",
@@ -87,14 +95,6 @@ const Header = () => {
     //   showAsTab: false,
     //   separateRoute: true,
     //   routes: routes.contactUs,
-    //   hasSubRoute: false,
-    //   showSubRoute: false
-    // },
-    // {
-    //   tittle: "Settings",
-    //   showAsTab: false,
-    //   separateRoute: true,
-    //   routes: routes.settingEdit,
     //   hasSubRoute: false,
     //   showSubRoute: false
     // },
@@ -220,7 +220,7 @@ const Header = () => {
                         <div>
                           <div className="linksWrap">
                                 <Dropdown.Item>
-                                <Link to={routes.settingEdit}>Profile Management</Link>
+                                <Link to={routes.profile}>Profile Management</Link>
                                   {/* {user?.userDetail?.firstName} */}
                                   </Dropdown.Item>
                           </div>

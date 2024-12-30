@@ -14,8 +14,8 @@ export const all_routes = {
   // Subscription Routes
   subscription: "/subscription",
 
+  profile: "/profile",
 
-  settingEdit: "/settings",
   Settings: "/settings/profile",
 
 

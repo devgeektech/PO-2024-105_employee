@@ -168,7 +168,7 @@ const publicRoutes = [
     route: Route,
   },
   {
-    path: routes.settingEdit,
+    path: routes.profile,
     element: <EditSetting/>,
     route: Route,
   },

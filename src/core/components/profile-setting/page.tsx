@@ -26,10 +26,6 @@ export default function ProfileTabContent({ userDetail }: any) {
   let { tabKey = "accountSettings", tab }: any = queryString.parse(location.search);
   const routes = all_routes;
 
-  // useEffect(() => {
-  //   setActiveKey(tabKey);
-  // }, [activeKey, tabKey])
-
   useEffect(() => {
     if (!getUserToken()) {
       navigate("/auth/login");
@@ -39,11 +35,6 @@ export default function ProfileTabContent({ userDetail }: any) {
   const navigateToTab = (tabKey: string) => {
     if(tabKey) tab = tabKey;
     setActiveKey(tab);
-    
-    // let str = ''
-    // if(tabKey == 'changePassword')str = routes.settingEdit;
-    // if (str != '') navigate(str);
-
   }
 
   return (
@@ -52,25 +43,19 @@ export default function ProfileTabContent({ userDetail }: any) {
       <Tab.Container id="left-tabs-example" activeKey={activeKey} defaultActiveKey={activeKey}>
         <Row>
           <Col md={4} lg={3} className="">
-            <Nav
+            {/* <Nav
               variant="pills"
               className="flex-column proifleSubTab border-right h-100"
               defaultActiveKey="changePassword"
             >
-              {/* {TAB_MENU.filter(
-                (item) =>
-                  !((role == "trainer" || role == "sponsor") && item.eventKey == "subscription")
-              ).map((item: INTERFACE_TAB_MENU) => ( */}
+             
               <Nav.Item
-              // key={item.id}
               >
                 <Nav.Link
-                  // onClick={()=>navigateToTab(item.eventKey)} eventKey={item.eventKey}
                   eventKey="accountSettings"
                   onClick={() => navigateToTab("accountSettings")}
                 >
                   <AccountSettingIcon />
-                  {/* {item.name} */}
                   Setting
                 </Nav.Link>{" "}
               </Nav.Item>
@@ -81,9 +66,9 @@ export default function ProfileTabContent({ userDetail }: any) {
                   Change Password
                 </Nav.Link>{" "}
               </Nav.Item>
-              {/* ))} */}
-            </Nav>
+            </Nav> */}
           </Col>
+          
           <Col md={8} lg={9}>
             <Tab.Content className="proifleSubTabContent">
               <Tab.Pane eventKey="accountSettings">

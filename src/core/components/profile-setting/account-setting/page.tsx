@@ -20,6 +20,8 @@ import { getServicelist } from '../../../../services/services.service';
 import { Autocomplete } from "@react-google-maps/api";
 import { editPartner } from '../../../../services/partner.service';
 import { MIME_TYPE_MAP } from '../../../../constants/utlis';
+import PhoneIcon from '../../../../icons/PhoneIcon';
+import UserIcon from '../../../../icons/UserIcon';
 
 
 export default function AccountSetting({ userDetail }: any) {
@@ -274,7 +276,7 @@ export default function AccountSetting({ userDetail }: any) {
 
   return (
     <div className="accountSettingTab">
-      <h3 className="mb-3">{LANG.EDIT_ACCOUNT_DETAILS}</h3>
+      {/* <h3 className="mb-3">{LANG.EDIT_ACCOUNT_DETAILS}</h3> */}
       <div className="uploadImageWrapper mb-3">
         <div className="uploadImg">
           <div className="d-flex align-items-center flex-column profileImageChange">
@@ -301,17 +303,17 @@ export default function AccountSetting({ userDetail }: any) {
       <div className="personalIformation   formEditWrap mb-3">
         <Form onSubmit={formik.handleSubmit}>
           <div className="bgFormColor p-4 mb-3">
-            <label>Business information</label>
+           
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-6">
                 <Form.Group className="mb-3">
                   <div className="group-img iconLeft  position-relative">
                     <label>
-                      <BusinessIcon />
+                      <UserIcon />
                     </label>
                     <input
                       type="text"
-                      placeholder="Business name"
+                      placeholder="First name"
                       {...formik.getFieldProps("businessName")}
                       className={clsx("commonInput form-control", {
                         "border border-danger":
@@ -323,231 +325,71 @@ export default function AccountSetting({ userDetail }: any) {
               </div>
             </div>
 
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <div className="group-img iconLeft  position-relative textareaWrap">
-                <label>
-                  <FileIcon />
-                </label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  defaultValue=""
-                  {...formik.getFieldProps("description")}
-                  name="description"
-                  placeholder="Tell us something about your business"
-                />
-              </div>
-            </Form.Group>
-          </div>
-
-          <div className="bgFormColor p-4 mb-3">
-            <label>Address</label>
-            <div className="group-img iconLeft  position-relative textareaWrap">
-              <label>
-                <LocationIcon />
-              </label>
-              <Form.Group className="mb-3">
-                <Autocomplete
-                  onLoad={handleLoad}
-                  onPlaceChanged={handlePlaceChanged}
-                >
-                  <input
-                    type="text"
-                    name="search"
-                    className="commonInput form-control"
-                    placeholder="Search for a place"
-                    value={address}
-                    onChange={(e) => changeAddress(e)}
-                  />
-                </Autocomplete>
-              </Form.Group>
-            </div>
             <div className="row">
               <div className="col-md-6">
                 <Form.Group className="mb-3">
-                  <input
-                    type="text"
-                    placeholder={LANG.ZIP_CODE}
-                    {...formik.getFieldProps("zipCode")}
-                    className={clsx("commonInput form-control", {
-                      "border border-danger":
-                        formik.touched.zipCode && formik.errors.zipCode,
-                    })}
-                    onChange={(v) => changeZipcode}
-                    value={zipCode}
-                  />
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-3">
-                  <input
-                    type="text"
-                    placeholder="City"
-                    {...formik.getFieldProps("city")}
-                    className={clsx("commonInput form-control", {
-                      "border border-danger":
-                        formik.touched.houseNumber && formik.errors.houseNumber,
-                    })}
-                    value={city}
-                    onChange={(e) => changeCity(e)}
-                  />
-                </Form.Group>
-              </div>
-            </div>
-          </div>
-
-          <div className="bgFormColor p-4 mb-3">
-            <label>Working hours</label>
-            <ul className="addedTime mb-3">
-              <li>
-                <button>
-                  <CrossIcon />
-                </button>
-                <TimerIcon />
-                <label>{selectedDays?.join(', ')}| {user?.userDetail?.startTime} {startTimeFormat} - {user?.userDetail?.endTime} {endTimeFormat}</label>
-              </li>
-            </ul>
-            <div className="row">
-              <div className="col-md-6">
-                <Form.Group className="mb-xs-3 mb-3 mb-sm-3 mb-md-0 mb-lg-0 mb-xl-0 mb-xxl-0">
-                  <input
-                    type="time"
-                    placeholder="Open at"
-                    {...formik.getFieldProps("startTime")}
-                    className={clsx("commonInput form-control", {
-                      "border border-danger":
-                        formik.touched.startTime && formik.errors.startTime,
-                    })}
-                  />
-                </Form.Group>
-              </div>
-              <div className="col-md-6">
-                <Form.Group className="mb-xs-3 mb-3 mb-sm-3 mb-md-0 mb-lg-0 mb-xl-0 mb-xxl-0">
-                  <input
-                    type="time"
-                    placeholder="Close at"
-                    {...formik.getFieldProps("endTime")}
-                    className={clsx("commonInput form-control", {
-                      "border border-danger":
-                        formik.touched.endTime && formik.errors.endTime,
-                    })}
-                  />
-                </Form.Group>
-              </div>
-            </div>
-
-            <ul className="daysCheckbox">
-              {daysOfWeek.map((day) => (
-                <li key={day.id}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      value={day.id}
-                      checked={selectedDays.includes(day.id)}
-                      onChange={handleDayCheckboxChange}
-                    />
-                    <span className="day">{day.name}</span>
-                    <span className="bg"></span>
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bgFormColor p-4 mb-3">
-            <label>Services</label>
-            <div className="row">
-              <div className="col-md-12">
-                <div className="group-img iconLeft  position-relative textareaWrap">
-                  <label>
-                    <SearchIcon />
-                  </label>
-                  <Form.Group className="mb-xs-3 mb-3 mb-sm-3 mb-md-0 mb-lg-0 mb-xl-0 mb-xxl-0">
+                  <div className="group-img iconLeft  position-relative">
+                    <label>
+                      <UserIcon />
+                    </label>
                     <input
                       type="text"
-                      placeholder="Search service"
-                      className="commonInput form-control"
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
+                      placeholder="Last name"
+                      {...formik.getFieldProps("businessName")}
+                      className={clsx("commonInput form-control", {
+                        "border border-danger":
+                          formik.touched.businessName && formik.errors.businessName,
+                      })}
                     />
-                  </Form.Group>
-                </div>
+                  </div>
+                </Form.Group>
               </div>
             </div>
-            <ul className="daysCheckbox servicesWrap">
-              {filteredServices?.map((item: any, index: number) => (
-                <li key={index} className='align-items-center'>
-                  <label>
+
+            <div className="row">
+              <div className="col-md-6">
+                <Form.Group className="mb-3">
+                  <div className="group-img iconLeft  position-relative">
+                    <label>
+                      <PhoneIcon />
+                    </label>
                     <input
-                      type="checkbox"
-                      name="service"
-                      value={item._id}
-                      checked={formik.values.services.includes(item._id)}
-                      onChange={handleCheckboxChange}
+                      type="text"
+                      placeholder="Phone number"
+                      {...formik.getFieldProps("businessName")}
+                      className={clsx("commonInput form-control", {
+                        "border border-danger":
+                          formik.touched.businessName && formik.errors.businessName,
+                      })}
                     />
-                    <span className="day">{item.name}</span>
-                    <span className="bg"></span>
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="bgFormColor p-4 mb-3">
-            <label>Gym images</label>
-            <div className="uploadWrapper">
-              <ul className="outerBlock">
-                <li>
-                  <ul className="showImages">
-                    {previews.map(({ preview, type }, index) => (
-                      <li className="position-relative" key={index}>
-                        <button
-                        type = "button"
-                          className="crossBtn removeGymFile"
-                          onClick={() => handleRemoveImage(index)}
-                        >
-                          <CrossWhiteBlackIcon />
-                        </button>
-
-                        <div className="image">
-                          {type.startsWith('video') ? (
-                            <video src={isLiveUrl(preview)
-                              ? fileUrl + preview
-                              : preview} controls className="w-100" />
-                          ) : (
-                            <img src={isLiveUrl(preview)
-                              ? fileUrl + preview
-                              : preview} alt={`Preview ${index}`} className="w-100" />
-                          )}
-                        </div>
-                      </li>
-                    ))}
-
-                    <li className="uploadBlock">
-                      <div className="upload text-center">
-                        <input
-                          type="file"
-                          multiple
-                          onChange={handleFileChange}
-                          accept="image/*,video/*"
-
-                        />
-                        <img
-                          src={"/assets/img/uploadIcon.png"}
-                          alt="uploadIcon"
-                        />
-                        <p>Drop or upload images</p>
-                        <button>Browse image</button>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+                  </div>
+                </Form.Group>
+              </div>
             </div>
+
+            <div className="row">
+              <div className="col-md-4">
+                <Form.Group className="mb-3">
+                  <div className="group-img iconLeft  position-relative">
+                    <label>
+                      <TimerIcon />
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Age"
+                      {...formik.getFieldProps("businessName")}
+                      className={clsx("commonInput form-control", {
+                        "border border-danger":
+                          formik.touched.businessName && formik.errors.businessName,
+                      })}
+                    />
+                  </div>
+                </Form.Group>
+              </div>
+            </div>
+
           </div>
+        
           <div className="updateWrap">
             <Button type="submit" className="updateBtn mt-4">
               Update profile
