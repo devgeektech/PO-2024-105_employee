@@ -25,7 +25,7 @@ import LocationGreyIcon from "../../icons/LocationGreyIcon";
 import TimerIcon from "../../icons/TimerIcon";
 import SingleSlideSlider from "../../core/components/singleSlideSlider";
 import MultiColumnSlider from "../../core/components/multiColumSlider";
-import ClassesCard from "../../core/components/classesCard";
+import CommonCard from "../../core/components/commonCard";
 // import Swiper from 'swiper';
 
 

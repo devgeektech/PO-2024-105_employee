@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import './style.scss';
 
 import { Navigation } from 'swiper/modules';
-import ClassesCard from '../classesCard';
+import CommonCard from '../commonCard';
 
 export default function MultiColumnSlider({ classes }: any) {
   return (
@@ -47,7 +47,7 @@ export default function MultiColumnSlider({ classes }: any) {
         {classes?.length &&
           classes.map((item: any) => (
             <SwiperSlide>
-              <ClassesCard
+              <CommonCard
                 className={item.className}
                 image={item.images[0]}
                 status={item.status}

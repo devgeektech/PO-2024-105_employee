@@ -30,12 +30,14 @@
             font-weight: 500;
             line-height: 28.8px;
             text-align: left;
-            text-decoration-line: underline;
+            // text-decoration-line: underline;
             text-decoration-style: solid;
             color: rgba(3, 13, 18, 1);
             word-break: break-word;
-            align-items: start;
+            // align-items: center;
             display: flex;
+            flex-direction: column;
+            margin-bottom: 5px;
         }
         .gameBtn {
             background: rgba(18, 28, 39, 1);
