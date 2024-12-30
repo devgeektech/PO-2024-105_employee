@@ -8,8 +8,8 @@ export const all_routes = {
   stepThree: "/auth/stepThree",
   stepFour: "/auth/stepFour",
   stepFive: "/auth/stepFive",
-
   thankYou: "/auth/thank-you",
+
 
   // Subscription Routes
   subscription: "/subscription",

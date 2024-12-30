@@ -25,7 +25,8 @@ const stepThirdInitialValues = {
   otp: ""
 }
 const stepFourInitialValues = {
-  domainName: "",
+  // companyEmail: "",
+  companyName: "",
 }
 const stepFiveInitialValues = {
   firstName: "",
@@ -46,7 +47,8 @@ const stepThirdRegisterSchema = Yup.object().shape({
 });
 
 const stepFourRegisterSchema = Yup.object().shape({
-  domainName: Yup.string().required("Domain name is required"),
+  companyName: Yup.string().required("Field is required"),
+  // companyEmail: Yup.string().required("Domain name is required"),
 });
 
 const stepFiveRegisterSchema = Yup.object().shape({
@@ -65,7 +67,7 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
   const [isVerifiedBussiness, setIsVerifiedBussiness] = useState<any>(false);
   const [companyName, setCompanyName] = useState<any>("");
-  const [domainName, setDomainName] = useState<any>("");
+  const [companyEmail, setDomainName] = useState<any>("");
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [submitDetails, setSubmitDetails] = useState({
     // name: "",
@@ -170,7 +172,7 @@ const Signin = () => {
         const result = await sendCompanyReferral(stepFourPayload);
         if (result.status == 200) {
           toast.success(result.data.responseMessage);
-          navigate("/auth/login");
+          navigate("/auth/thank-you");
         }
         else if (result.status == 404) {
           toast.error("Something went wrong");

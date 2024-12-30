@@ -27,18 +27,18 @@ const StepFour = ({ formik, submitDetails }: any) => {
                           alt="Logo"
                         />
                       </header>
-                      <div className="processWrapper">
+                      {/* <div className="processWrapper">
                         <ul>
                           <li className="active"></li>
                           <li className="active"></li>
                         </ul>
-                      </div>
+                      </div> */}
 
                       <div className="shadow-card">
                         <h2 className="text-center">
-                          Your company is not registered in Fitpond
+                          Please filled the company details
                         </h2>
-                        <p className="text-center">Submit the company referral with following detals.</p>
+                        <p className="text-center">All fields are mandatory</p>
                         <div className="tab-content" id="myTabContent">
                           <div
                             className="tab-pane fade show active"
@@ -57,9 +57,10 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                     type="text"
                                     maxLength={64}
                                     className="form-control commonInput"
-                                    placeholder="Company name"
-                                    disabled={true}
-                                    value={submitDetails?.companyName}
+                                    placeholder="Name of the company"
+                                    onChange={(ev: any) => {
+                                      formik.setFieldValue("companyName", ev.target.value);
+                                    }}
                                   />
                                 </div>
                                 <div className="text-start">
@@ -72,19 +73,19 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                   <label><GlobeIcon /></label>
                                   <input
                                     type="text"
-                                    name="domainName"
-                                    id="domainName"
+                                    name="companyEmail"
+                                    id="companyEmail"
                                     maxLength={64}
                                     className="form-control commonInput"
-                                    placeholder="Domain name"
+                                    placeholder="Email of the company (optional)"
                                     onChange={(ev: any) => {
-                                      formik.setFieldValue("domainName", ev.target.value);
+                                      formik.setFieldValue("companyEmail", ev.target.value);
                                     }}
                                   />
                                 </div>
-                                <div className="text-start">
-                                  <ErrorText show={formik.errors.domainName && formik.touched.domainName} message={formik.errors?.domainName} />
-                                </div>
+                                {/* <div className="text-start">
+                                  <ErrorText show={formik.errors.companyEmail && formik.touched.companyEmail} message={formik.errors?.companyEmail} />
+                                </div> */}
                               </div>
 
                               <div className="form-group">
@@ -96,7 +97,7 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                     name="contactEmail"
                                     maxLength={64}
                                     className="form-control commonInput"
-                                    placeholder="Email of the contact person"
+                                    placeholder="Email of the contact person (optional)"
                                     onChange={(ev: any) => {
                                       formik.setFieldValue("contactEmail", ev.target.value);
                                     }}
@@ -111,9 +112,9 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                 Submit
                               </button>
 
-                              <div className="text-center">
+                              {/* <div className="text-center">
                                 <Link to={"/auth/login"} className="text-underline">Skip for now</Link>
-                              </div>
+                              </div> */}
                             </form>
                             {/* /Register Form */}
                           </div>
