@@ -25,7 +25,7 @@ export default function AccountSetting({ userDetail }: any) {
     firstName: user?.userDetail?.firstName || '',
     lastName: user?.userDetail?.lastName || '',
     phone: user?.userDetail?.phone || '',
-    dob: user?.userDetail?.dob || '',
+    dob: user?.userDetail?.dob ? new Date(user?.userDetail?.dob).toISOString().split("T")[0] : "",
   }
 
   const profileSchema: any = Yup.object().shape({
@@ -178,6 +178,7 @@ export default function AccountSetting({ userDetail }: any) {
                     <input
                       type="date"
                       placeholder="Date of birth"
+                      max={new Date().toISOString().split("T")[0]} // Set max to today's date
                       {...formik.getFieldProps("dob")}
                       className={clsx("commonInput form-control", {
                         "border border-danger":

@@ -220,12 +220,16 @@ const Signin = () => {
     setStep(5);
   }
 
+  const makeReferral = () => {    
+    setStep(4);
+  }
+
 
   const renderLayout = (activeStep: number) => {
 
     switch (activeStep) {
       case 1: {
-        return <StepFirst formik={stepOneFormik} setIsVerifiedBussiness={setIsVerifiedBussiness} setCompanyName={setCompanyName} />;
+        return <StepFirst formik={stepOneFormik} setIsVerifiedBussiness={setIsVerifiedBussiness} setCompanyName={setCompanyName}  makeReferral={makeReferral} />;
       }
       case 2: {
         return <StepSecond formik={stepSecondFormik} onBackClick={onBackClick} />;
