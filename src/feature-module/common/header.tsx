@@ -8,7 +8,7 @@ import { Dropdown } from "react-bootstrap";
 import { clearStorage } from "../../services/storage.service";
 import { LANG } from "../../constants/language";
 import LogutIcon from "../../icons/LogutIcon";
-import {  getUserProfile, isLoginUser } from "../../services/user.service";
+import { getUserProfile, isLoginUser } from "../../services/user.service";
 import { getAllLocations, getLocationById } from "../../services/partner.service";
 const Header = () => {
   const routes: any = all_routes;
@@ -17,9 +17,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.user);
-  const [availLocations, setAvailLocations] = useState<any>([]);  
-  const savedNotifications = useSelector((state: any) => state.notification?.notifications) || [];
-  const notReadNotifications = useSelector((state: any) => state.notification.notificationCount);
+  const [authToken, setAuthToken] = useState("");
+
 
   // const MenuToggle = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -122,7 +121,7 @@ const Header = () => {
 
   const getUserDetail = async () => {
     try {
-      const userData = await getUserProfile();      
+      const userData = await getUserProfile();
       dispatch(setUserDetail(userData?.data?.data));
     } catch (error) {
       console.log(error)
@@ -219,10 +218,21 @@ const Header = () => {
                       <Dropdown.Menu>
                         <div>
                           <div className="linksWrap">
-                                <Dropdown.Item>
-                                <Link to={routes.profile}>Profile Management</Link>
-                                  {/* {user?.userDetail?.firstName} */}
-                                  </Dropdown.Item>
+
+                            <Dropdown.Item>
+                              <Link to={`${all_routes.profile}?token=${authToken || localStorage.getItem("token")}`}>
+                                Profile Management
+                              </Link>
+                            </Dropdown.Item>
+
+                            {/* <Dropdown.Item
+                              onClick={() =>
+                                navigate(`${all_routes.profile}?token=${authToken || localStorage.getItem("token")}`)
+                              }
+                            >
+                              Profile Management
+                            </Dropdown.Item> */}
+
                           </div>
                           <div className="logoutBtnWrap">
                             <Dropdown.Item><LogutIcon /> {LANG.LOGOUT}</Dropdown.Item>

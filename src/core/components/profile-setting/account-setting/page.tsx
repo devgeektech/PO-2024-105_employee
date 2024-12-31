@@ -12,6 +12,7 @@ import PhoneIcon from '../../../../icons/PhoneIcon';
 import UserIcon from '../../../../icons/UserIcon';
 import { updateUserProfile } from '../../../../services/user.service';
 import CalendarIcon from '../../../../icons/CalendarIcon';
+import { useLocation } from 'react-router-dom';
 
 
 export default function AccountSetting({ userDetail }: any) {
@@ -20,6 +21,8 @@ export default function AccountSetting({ userDetail }: any) {
   const [loading, setLoading] = useState(false);
   const fileUrl = process.env.REACT_APP_FILE_URL;
   const user = useSelector((state: any) => state.user);
+  const location = useLocation();
+  const [authToken, setAuthToken] = useState("");
 
   const profileInitialValues: any = {
     firstName: user?.userDetail?.firstName || '',
@@ -36,7 +39,18 @@ export default function AccountSetting({ userDetail }: any) {
   });
 
   useEffect(() => {
-  }, []);
+    const queryParams = new URLSearchParams(location.search);
+    const token = queryParams.get("token");
+
+    if (token) {
+      setAuthToken(token);
+      console.log("Received Token:", token);
+      localStorage.setItem("token", token);
+    }
+    else {
+      console.warn("Token not found in URL");
+    }
+  }, [location]);
 
   const formik = useFormik({
     initialValues: profileInitialValues,

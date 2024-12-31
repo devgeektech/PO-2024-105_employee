@@ -14,12 +14,17 @@ export const isLoginUser = () => {
 }
 
 export const getUserProfile = async () => {
-    const id = getUserID();
     return http.get(`/employee/profile`);
 }
 
 export const updateUserProfile = async (payload: any) => {
-    return http.put(`/employee/updateProfile`, payload);
+    const token = getUserToken();
+
+    return http.put(`/employee/updateProfile`, payload,{
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
 }
 
 

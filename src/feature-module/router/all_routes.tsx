@@ -11,16 +11,18 @@ export const all_routes = {
   thankYou: "/auth/thank-you",
 
 
+  // Profile Routes
+  profile: "/profile",
+
+
   // Subscription Routes
   subscription: "/subscription",
 
-  profile: "/profile",
+
+
+
 
   Settings: "/settings/profile",
-
-
-
-
 
   classesDetail: "/classes/detail/:id",
   classesCreate: "/classes/create",
