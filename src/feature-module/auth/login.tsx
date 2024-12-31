@@ -28,6 +28,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [authToken, setAuthToken] = useState("");
 
 
   const formik = useFormik({
@@ -46,7 +47,7 @@ const Login = () => {
           dispatch(setLogin(true));
           dispatch(setUserDetail({userDetail: result.data?.data}));
           http.defaults.headers['Authorization'] = result.data?.data?.token;
-          navigate(route.subscription);
+          navigate(`${route.subscription}?token=${authToken || localStorage.getItem("token")}`);
 
         } else if (result.status == 404) {
           console.log(values)

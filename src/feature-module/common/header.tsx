@@ -47,6 +47,11 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/auth/login');
+  };
+
   const header = [
     {
       tittle: "Subscription",
@@ -236,7 +241,9 @@ const Header = () => {
 
                           </div>
                           <div className="logoutBtnWrap">
-                            <Dropdown.Item><LogutIcon /> {LANG.LOGOUT}</Dropdown.Item>
+                            <Dropdown.Item onClick={handleLogout}>
+                              <LogutIcon /> {LANG.LOGOUT}
+                            </Dropdown.Item>
                           </div>
                         </div>
                       </Dropdown.Menu>
