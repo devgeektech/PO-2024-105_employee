@@ -52,7 +52,8 @@ const Header = () => {
       tittle: "Subscription",
       showAsTab: false,
       separateRoute: true,
-      routes: routes.subscription,
+      // routes: routes.subscription,
+      routes: `${routes.subscription}?token=${authToken || localStorage.getItem("token")}`,
       hasSubRoute: false,
       showSubRoute: false
     },
