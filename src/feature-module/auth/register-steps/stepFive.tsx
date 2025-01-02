@@ -6,6 +6,7 @@ import ErrorText from "../../../core/components/error-text";
 import EmailIcon from "../../../icons/EmailIcon";
 import PhoneIcon from "../../../icons/PhoneIcon";
 import TimerIcon from "../../../icons/TimerIcon";
+import CalendarIcon from "../../../icons/CalendarIcon";
 
 const StepFive = ({ formik, submitDetails }: any) => {
   useEffect(() => {
@@ -33,8 +34,10 @@ const StepFive = ({ formik, submitDetails }: any) => {
                       </header>
                       <div className="shadow-card">
                         <h2 className="text-center">
-                          Add account details
+                          Please complete your personal details
                         </h2>
+                        <p className="text-center">All fields are mandatory</p>
+
                         <div className="tab-content" id="myTabContent">
                           <div
                             className="tab-pane fade show active"
@@ -53,7 +56,7 @@ const StepFive = ({ formik, submitDetails }: any) => {
                                     type="text"
                                     maxLength={64}
                                     className="form-control commonInput"
-                                    placeholder="Your first name"
+                                    placeholder="First name"
                                     onChange={(ev: any) => {
                                       console.log(ev.target.value, "firstName :")
                                       formik.setFieldValue("firstName", ev.target.value);
@@ -74,7 +77,7 @@ const StepFive = ({ formik, submitDetails }: any) => {
                                     type="text"
                                     maxLength={64}
                                     className="form-control commonInput"
-                                    placeholder="Your last name"
+                                    placeholder="Last name"
                                     onChange={(ev: any) => {
                                       console.log(ev.target.value, "lastName :")
                                       formik.setFieldValue("lastName", ev.target.value);
@@ -83,22 +86,6 @@ const StepFive = ({ formik, submitDetails }: any) => {
                                 </div>
                                 <div className="text-start">
                                   <ErrorText show={formik.errors.lastName && formik.touched.lastName} message={formik.errors?.lastName} />
-                                </div>
-                              </div>
-
-                              <div className="form-group">
-                                <div className="group-img iconLeft  position-relative">
-                                  <label><EmailIcon /></label>
-                                  <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    maxLength={64}
-                                    className="form-control commonInput"
-                                    placeholder="Email"
-                                    disabled={true}
-                                    value={submitDetails?.email}
-                                  />
                                 </div>
                               </div>
 
@@ -124,22 +111,22 @@ const StepFive = ({ formik, submitDetails }: any) => {
 
                               <div className="form-group">
                                 <div className="group-img iconLeft  position-relative">
-                                  <label><TimerIcon /></label>
+                                  <label><CalendarIcon /></label>
                                   <input
-                                    type="number"
-                                    id="age"
-                                    name="age"
-                                    maxLength={2}
+                                    type="date"
+                                    id="date"
+                                    name="dob"
                                     className="form-control commonInput"
-                                    placeholder="Age"
+                                    placeholder="Date of birth (optional)"
+                                    max={new Date().toISOString().split("T")[0]} // Set max to today's date
                                     onChange={(ev: any) => {
-                                      formik.setFieldValue("age", ev.target.value);
+                                      formik.setFieldValue("dob", ev.target.value);
                                     }}
                                   />
                                 </div>
-                                <div className="text-start">
-                                  <ErrorText show={formik.errors.age && formik.touched.age} message={formik.errors?.age} />
-                                </div>
+                                {/* <div className="text-start">
+                                  <ErrorText show={formik.errors.dob && formik.touched.dob} message={formik.errors?.dob} />
+                                </div> */}
                               </div>
 
                               <button

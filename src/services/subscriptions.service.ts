@@ -1,8 +1,15 @@
 import http from "./http.service";
+import { getUserToken } from "./user.service";
 
 
 export const getSubscriptionList = async () => {
-    return http.get(`/employee/subscription`,);
+    const token = getUserToken();
+
+    return http.get(`/employee/subscription`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
 }
 
 

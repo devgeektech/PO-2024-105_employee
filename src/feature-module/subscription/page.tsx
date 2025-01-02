@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Tab } from 'react-bootstrap';
 import CommonCard from '../../core/components/commonCard';
 import { getSubscriptionList } from '../../services/subscriptions.service';
 
 export default function Subscription() {
     const [subscriptionList, setSubscriptionList] = useState<any[]>([]);
+    const location = useLocation();
+    const [authToken, setAuthToken] = useState("");
 
     useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const token = queryParams.get("token");
+
+        if (token) {
+            setAuthToken(token);
+            console.log("Received Token:", token);
+            localStorage.setItem("token", token);
+        }
+        else {
+            console.warn("Token not found in URL");
+        }
+
         getSubscriptions();
-    }, []);
+    }, [location]);
 
     const getSubscriptions = async () => {
         try {
@@ -46,7 +60,7 @@ export default function Subscription() {
                                         key={index}
                                     >
                                         <CommonCard
-                                            name={item?.name || 'N/A'}
+                                            name={item?.planName || 'N/A'}
                                             description={item?.description || 'N/A'}
                                             price={item?.price || 0}
                                             partnersDetails={item?.partnersDetails || []}

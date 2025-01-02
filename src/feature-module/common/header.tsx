@@ -8,7 +8,7 @@ import { Dropdown } from "react-bootstrap";
 import { clearStorage } from "../../services/storage.service";
 import { LANG } from "../../constants/language";
 import LogutIcon from "../../icons/LogutIcon";
-import {  getUserProfile, isLoginUser } from "../../services/user.service";
+import { getUserProfile, isLoginUser } from "../../services/user.service";
 import { getAllLocations, getLocationById } from "../../services/partner.service";
 const Header = () => {
   const routes: any = all_routes;
@@ -17,9 +17,8 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.user);
-  const [availLocations, setAvailLocations] = useState<any>([]);  
-  const savedNotifications = useSelector((state: any) => state.notification?.notifications) || [];
-  const notReadNotifications = useSelector((state: any) => state.notification.notificationCount);
+  const [authToken, setAuthToken] = useState("");
+
 
   // const MenuToggle = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,15 +47,29 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/auth/login');
+  };
+
   const header = [
     {
       tittle: "Subscription",
       showAsTab: false,
       separateRoute: true,
-      routes: routes.subscription,
+      // routes: routes.subscription,
+      routes: `${routes.subscription}?token=${authToken || localStorage.getItem("token")}`,
       hasSubRoute: false,
       showSubRoute: false
     },
+    // {
+    //   tittle: "Profile",
+    //   showAsTab: false,
+    //   separateRoute: true,
+    //   routes: routes.profile,
+    //   hasSubRoute: false,
+    //   showSubRoute: false
+    // },
 
     // {
     //   tittle: "Dashboard",
@@ -90,14 +103,6 @@ const Header = () => {
     //   hasSubRoute: false,
     //   showSubRoute: false
     // },
-    // {
-    //   tittle: "Settings",
-    //   showAsTab: false,
-    //   separateRoute: true,
-    //   routes: routes.settingEdit,
-    //   hasSubRoute: false,
-    //   showSubRoute: false
-    // },
   ];
 
   const customStyle = {
@@ -122,7 +127,7 @@ const Header = () => {
 
   const getUserDetail = async () => {
     try {
-      const userData = await getUserProfile();      
+      const userData = await getUserProfile();
       dispatch(setUserDetail(userData?.data?.data));
     } catch (error) {
       console.log(error)
@@ -219,13 +224,26 @@ const Header = () => {
                       <Dropdown.Menu>
                         <div>
                           <div className="linksWrap">
-                                <Dropdown.Item>
-                                <Link to={routes.settingEdit}>Profile Management</Link>
-                                  {/* {user?.userDetail?.firstName} */}
-                                  </Dropdown.Item>
+
+                            <Dropdown.Item>
+                              <Link to={`${all_routes.profile}?token=${authToken || localStorage.getItem("token")}`}>
+                                Profile Management
+                              </Link>
+                            </Dropdown.Item>
+
+                            {/* <Dropdown.Item
+                              onClick={() =>
+                                navigate(`${all_routes.profile}?token=${authToken || localStorage.getItem("token")}`)
+                              }
+                            >
+                              Profile Management
+                            </Dropdown.Item> */}
+
                           </div>
                           <div className="logoutBtnWrap">
-                            <Dropdown.Item><LogutIcon /> {LANG.LOGOUT}</Dropdown.Item>
+                            <Dropdown.Item onClick={handleLogout}>
+                              <LogutIcon /> {LANG.LOGOUT}
+                            </Dropdown.Item>
                           </div>
                         </div>
                       </Dropdown.Menu>

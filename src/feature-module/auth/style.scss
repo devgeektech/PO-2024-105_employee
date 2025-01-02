@@ -135,6 +135,7 @@
           left: 0;
           top: 0;
         }
+
         span.backBtn {
           position: absolute;
           left: 0;
@@ -216,6 +217,10 @@
           accent-color: #007bff;
         }
 
+        .referralLink {
+          color: #6B7385;
+          font-weight: normal;
+        }
       }
 
       .shadow-card.thankyou {
@@ -285,11 +290,12 @@
 }
 
 p.warningMessage {
-  color: #E77F16!important;
+  color: #E77F16 !important;
   font-size: 12px !important;
   padding-top: 2px;
 
 }
-.borderWarning{
+
+.borderWarning {
   border: 1px solid #E77F16;
 }

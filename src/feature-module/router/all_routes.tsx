@@ -8,19 +8,21 @@ export const all_routes = {
   stepThree: "/auth/stepThree",
   stepFour: "/auth/stepFour",
   stepFive: "/auth/stepFive",
-
   thankYou: "/auth/thank-you",
+
+
+  // Profile Routes
+  profile: "/profile",
+
 
   // Subscription Routes
   subscription: "/subscription",
 
 
-  settingEdit: "/settings",
+
+
+
   Settings: "/settings/profile",
-
-
-
-
 
   classesDetail: "/classes/detail/:id",
   classesCreate: "/classes/create",

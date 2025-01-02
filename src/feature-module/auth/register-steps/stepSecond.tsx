@@ -11,7 +11,6 @@ import BackIcon from "../../../icons/BackIcon";
 
 const StepSecond = ({ formik, onBackClick }: any) => {
 
-
   return (
     <>
       <div className="main-wrapper authendication-pages">
@@ -42,8 +41,10 @@ const StepSecond = ({ formik, onBackClick }: any) => {
 
                       <div className="shadow-card">
                         <h2 className="text-center">
-                          Enter your work email address
+                          Enter your work email
                         </h2>
+                        <p className="text-center">We'll only use this info to confirm your company added you to their FitPond program.</p>
+
                         <div className="tab-content" id="myTabContent">
                           <div
                             className="tab-pane fade show active"
@@ -63,7 +64,7 @@ const StepSecond = ({ formik, onBackClick }: any) => {
                                     name="email"
                                     maxLength={64}
                                     className="form-control commonInput"
-                                    placeholder="Email"
+                                    placeholder="Your work email"
                                     onChange={(ev: any) => {
                                       formik.setFieldValue("email", ev.target.value);
                                     }}

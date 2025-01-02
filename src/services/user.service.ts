@@ -14,9 +14,27 @@ export const isLoginUser = () => {
 }
 
 export const getUserProfile = async () => {
-    const id = getUserID();
-    return http.get(`/employee/profile`);
+    const token = getUserToken();
+
+    return http.get(`/employee/profile`, {
+        headers: {
+            Authorization: `${token}`,
+        },
+    });
 }
+
+export const updateUserProfile = async (payload: any) => {
+    const token = getUserToken();
+
+    return http.put(`/employee/updateProfile`, payload, {
+        headers: {
+            Authorization: `${token}`,
+        },
+    });
+}
+
+
+
 
 export const updateUserById = async (payload: any) => {
     const id = getUserID();

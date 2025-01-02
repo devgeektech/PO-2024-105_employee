@@ -45,6 +45,7 @@ import Booking from "../booking/page";
 import CheckIn from "../check-in/page";
 import StepFirst from "../auth/register-steps/stepFirst";
 import Subscription from "../subscription/page";
+import ThankYou from "../auth/register-steps/thankYou";
 
 const routes = all_routes;
 
@@ -168,7 +169,7 @@ const publicRoutes = [
     route: Route,
   },
   {
-    path: routes.settingEdit,
+    path: routes.profile,
     element: <EditSetting/>,
     route: Route,
   },
@@ -289,6 +290,11 @@ const withoutHeaderRoutes = [
   {
     path: routes.stepFive,
     element: <StepFive />,
+    route: Route,
+  },,
+  {
+    path: routes.thankYou,
+    element: <ThankYou />,
     route: Route,
   },
   

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ImageWithBasePath from "../../../core/data/img/ImageWithBasePath";
 import LocationIcon from "../../../icons/LocationIcon";
 import { Autocomplete } from "@react-google-maps/api";
+import { all_routes } from "../../router/all_routes";
 
-const StepFirst = ({ formik, setIsVerifiedBussiness, setCompanyName }: any) => {
+const StepFirst = ({ formik, setIsVerifiedBussiness, setCompanyName, makeReferral }: any) => {
   const [autocomplete, setAutocomplete] = useState<any>(null);
 
   const handleLoad = (autoCompleteInstance: any) => {
@@ -40,7 +41,9 @@ const StepFirst = ({ formik, setIsVerifiedBussiness, setCompanyName }: any) => {
                       />
                     </header>
                     <div className="shadow-card steps">
-                      <h2 className="text-center">Choose your company</h2>
+                      <h2 className="text-center">Is your company partnered with fitpond?</h2>
+                      <p className="text-center">FitPond is a corporate-only benifit.</p>
+
                       <div className="tab-content" id="myTabContent">
                         <div
                           className="tab-pane fade show active"
@@ -48,7 +51,7 @@ const StepFirst = ({ formik, setIsVerifiedBussiness, setCompanyName }: any) => {
                           role="tabpanel"
                           aria-labelledby="user-tab"
                         >
-                          <form className="googleLocations" onSubmit={formik.handleSubmit}>
+                          <form className="googleLocations" onSubmit={formik?.handleSubmit || (() => { })}>
                             <div className="form-group">
                               <div className="group-img iconLeft email position-relative">
                                 <label><LocationIcon /></label>
@@ -60,12 +63,16 @@ const StepFirst = ({ formik, setIsVerifiedBussiness, setCompanyName }: any) => {
                                     type="text"
                                     name="companyName"
                                     className="commonInput form-control"
-                                    placeholder="Search company name"
+                                    placeholder="Search company"
                                   />
 
                                 </Autocomplete>
                               </div>
                             </div>
+
+                            <p className="text-center referralLink">Didn't find your company?{" "}
+                              <Link className="text-underline" onClick={makeReferral} to={""}> Make a referral</Link>
+                            </p>
 
                             <button
                               type="submit"
@@ -79,10 +86,10 @@ const StepFirst = ({ formik, setIsVerifiedBussiness, setCompanyName }: any) => {
                     </div>
 
                     <div className="bottom-text text-center">
-                        <p> Already have an account?
-                          <Link to={"/auth/login"} className="text-underline">Sign in</Link>
-                        </p>
-                      </div>
+                      <p> Already have an account?
+                        <Link to={"/auth/login"} className="text-underline">Sign in</Link>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

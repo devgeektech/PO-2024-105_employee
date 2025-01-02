@@ -4,6 +4,9 @@ export const SEND_COMPANY_REFERRAL = `/auth/employee/sendCompanyReferral`;
 export const VERIFY_OTP = `/auth/employee/verifyCode`;
 export const RESEND_VERIFY_CODE = `/auth/employee/resendVerifyCode`;
 export const ADD_ACCOUNT_DETAILS = `/auth/employee/addDetails`;
+export const ADD_PROFILE = `/auth/employee/addProfile`;
+
+
 
 
 export const checkCompanyStatus = async (payload: any) => {
@@ -12,6 +15,10 @@ export const checkCompanyStatus = async (payload: any) => {
 
 export const sendCompanyReferral = async (payload: any) => {
    return http.post(SEND_COMPANY_REFERRAL, payload);
+}
+
+export const addEmployeeProfile = async (payload: any) => {
+   return http.post(ADD_PROFILE, payload);
 }
 
 export const verifyOtp = async (payload: any) => {

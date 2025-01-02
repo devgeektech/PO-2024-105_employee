@@ -9,7 +9,7 @@ import StepFirst from "./register-steps/stepFirst";
 import StepSecond from "./register-steps/stepSecond";
 import StepThird from "./register-steps/stepThird"
 import StepFour from "./register-steps/stepFour"
-import { addAccountDetails, checkCompanyStatus, sendCompanyReferral, verifyOtp } from "../../services/onBoardingService";
+import { addAccountDetails, addEmployeeProfile, checkCompanyStatus, sendCompanyReferral, verifyOtp } from "../../services/onBoardingService";
 import StepFive from "./register-steps/stepFive";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -25,13 +25,14 @@ const stepThirdInitialValues = {
   otp: ""
 }
 const stepFourInitialValues = {
-  domainName: "",
+  // companyEmail: "",
+  companyName: "",
 }
 const stepFiveInitialValues = {
   firstName: "",
   lastName: "",
   phone: "",
-  age: ""
+  dob: ""
 }
 
 const stepFirstRegisterSchema = Yup.object().shape({
@@ -46,14 +47,15 @@ const stepThirdRegisterSchema = Yup.object().shape({
 });
 
 const stepFourRegisterSchema = Yup.object().shape({
-  domainName: Yup.string().required("Domain name is required"),
+  companyName: Yup.string().required("Field is required"),
+  // companyEmail: Yup.string().required("Domain name is required"),
 });
 
 const stepFiveRegisterSchema = Yup.object().shape({
   firstName: Yup.string().required("Field is required"),
   lastName: Yup.string().required("Field is required"),
   phone: Yup.string().min(10, LANG.MINIMUM_LIMIT_PHONE_CHAR).max(13, LANG.MAXIMUM_LIMIT_HUNDRED_CHAR).matches(phoneRegExp, 'Phone number is not valid'),
-  age: Yup.string().min(2, LANG.MINIMUM_AGE_LIMIT).max(2, LANG.MINIMUM_AGE_LIMIT),
+  dob: Yup.string(),
 });
 
 
@@ -65,7 +67,7 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
   const [isVerifiedBussiness, setIsVerifiedBussiness] = useState<any>(false);
   const [companyName, setCompanyName] = useState<any>("");
-  const [domainName, setDomainName] = useState<any>("");
+  const [companyEmail, setDomainName] = useState<any>("");
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [submitDetails, setSubmitDetails] = useState({
     // name: "",
@@ -84,7 +86,19 @@ const Signin = () => {
     onSubmit: async (values, { setSubmitting }) => {
       setLoading(true);
       try {
-        setStep(2);
+        const result = await checkCompanyStatus({ ...values });
+        if (result.status == 200) {
+          if (result?.data?.data?.isCompanyVerified) {
+            toast.success(result.data.responseMessage);
+            setStep(2);
+          }
+          else {
+            toast.error(result.data.responseMessage);
+            setStep(4);
+          }
+        } else if (result.status == 404) {
+          toast.error("Something went wrong");
+        }
       } catch (error) {
         console.log(error, loading)
         setSubmitting(false);
@@ -103,23 +117,18 @@ const Signin = () => {
           companyName,
           ...values
         };
-        const result = await checkCompanyStatus(stepTwoPayload);
+        const result = await addEmployeeProfile(stepTwoPayload);
         setSubmitDetails(stepTwoPayload);
 
         if (result.status == 200) {
-          if (result?.data?.data?.isCompanyVerified) {
-            toast.success(result.data.responseMessage);
-            setStep(3);
-          }
-          else {
-            toast.error(result.data.responseMessage);
-            setStep(4);
-          }
+          toast.success(result.data.responseMessage);
+          setStep(3);
         } else if (result.status == 404) {
           toast.error("Something went wrong");
         }
-      } catch (error) {
+      } catch (error: any) {
         console.log(error, loading)
+        toast.error(error?.response?.data?.responseMessage);
         setSubmitting(false);
         setLoading(false);
       }
@@ -132,7 +141,7 @@ const Signin = () => {
     onSubmit: async (values, { setSubmitting }) => {
       setLoading(true);
       try {
-        const otpString = otp.join("");        
+        const otpString = otp.join("");
         if (otpString.length === 4 && submitDetails.email != '') {
           const result: any = await verifyOtp({ email: submitDetails.email, otp: otpString });
           if (result.status == 200) {
@@ -141,8 +150,8 @@ const Signin = () => {
             setStep(5);
           }
           setOtp(["", "", "", ""]);
-        } 
-        else if (otpString.length < 4){
+        }
+        else if (otpString.length < 4) {
           setError("Please enter valid Otp")
         }
       } catch (error: any) {
@@ -170,7 +179,7 @@ const Signin = () => {
         const result = await sendCompanyReferral(stepFourPayload);
         if (result.status == 200) {
           toast.success(result.data.responseMessage);
-          navigate("/auth/login");
+          navigate("/auth/thank-you");
         }
         else if (result.status == 404) {
           toast.error("Something went wrong");
@@ -193,7 +202,7 @@ const Signin = () => {
         let partnerData = {
           ...submitDetails,
           ...values
-        };        
+        };
         const result = await addAccountDetails(partnerData);
 
         if (result.status == 200) {
@@ -220,18 +229,22 @@ const Signin = () => {
     setStep(5);
   }
 
+  const makeReferral = () => {
+    setStep(4);
+  }
+
 
   const renderLayout = (activeStep: number) => {
 
     switch (activeStep) {
       case 1: {
-        return <StepFirst formik={stepOneFormik} setIsVerifiedBussiness={setIsVerifiedBussiness} setCompanyName={setCompanyName} />;
+        return <StepFirst formik={stepOneFormik} setIsVerifiedBussiness={setIsVerifiedBussiness} setCompanyName={setCompanyName} makeReferral={makeReferral} />;
       }
       case 2: {
         return <StepSecond formik={stepSecondFormik} onBackClick={onBackClick} />;
       }
       case 3: {
-        return <StepThird formik={stepthirdFormik} otp={otp} setOtp={setOtp} submitDetails={submitDetails} error={error} setError={setError}/>;
+        return <StepThird formik={stepthirdFormik} otp={otp} setOtp={setOtp} submitDetails={submitDetails} error={error} setError={setError} />;
       }
       case 4: {
         return <StepFour formik={stepFourFormik} submitDetails={submitDetails} />;

@@ -13,8 +13,8 @@ export default function EditSetting() {
         
         <div className='container'>
                  <ul className='breadcrumbWrapper'>
-                    <li><Link to={'#'}>Setting</Link></li>/
-                    <li><span>Edit setting</span></li>
+                    <li><Link to={'#'}>Profile</Link></li>/
+                    <li><span>Edit profile</span></li>
                   </ul>
             <ProfileTabContent />
         </div>
