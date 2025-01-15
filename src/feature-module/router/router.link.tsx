@@ -38,14 +38,16 @@ import StepFour from "../auth/register-steps/stepFirst";
 import StepThird from "../auth/register-steps/stepThird";
 import StepSecond from "../auth/register-steps/stepSecond";
 import EditSetting from "../settings/Edit/page";
-import DetailClass from "../subscription/detail/page";
-import CreateClass from "../subscription/create/page";
+import SubscriptionSuccess from "../subscription/Cards/page";
+import SubscriptionDetails from "../subscription/Details/page";
 import ChangePasswordTabContent from "../../core/components/profile-setting/change-password/page";
 import Booking from "../booking/page";
 import CheckIn from "../check-in/page";
 import StepFirst from "../auth/register-steps/stepFirst";
 import Subscription from "../subscription/page";
 import ThankYou from "../auth/register-steps/thankYou";
+import path from "path";
+import Redirect from "../subscription/Redirect/page";
 
 const routes = all_routes;
 
@@ -184,20 +186,29 @@ const publicRoutes = [
     route: Route,
   },
   {
-    path: routes.classesDetail,
-    element: <DetailClass/>,
+    path: routes.subscriptionSuccess,
+    element: <SubscriptionSuccess/>,
     route: Route,
   },
   {
-    path: routes.classesCreate,
-    element: <CreateClass/>,
-    route: Route,
+    path: routes.subscriptionDetails,
+    element: <SubscriptionDetails />,
+    route: Route
   },
-  {
-    path: routes.classesEdit,
-    element: <CreateClass/>,
-    route: Route,
+  { path: routes.subscriptionRedirect,
+    element: <Redirect />,
+    route: Route
   },
+  // {
+  //   path: routes.classesCreate,
+  //   element: <CreateClass/>,
+  //   route: Route,
+  // },
+  // {
+  //   path: routes.classesEdit,
+  //   element: <CreateClass/>,
+  //   route: Route,
+  // },
   {
     path: routes.booking,
     element: <Booking/>,

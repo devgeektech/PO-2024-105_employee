@@ -17,8 +17,9 @@ export const all_routes = {
 
   // Subscription Routes
   subscription: "/subscription",
-
-
+  subscriptionSuccess : "/subscription/success",
+  subscriptionDetails: "/subscription/details",
+  subscriptionRedirect: "/subscription/redirect",
 
 
 
