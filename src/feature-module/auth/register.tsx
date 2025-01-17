@@ -6,10 +6,10 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { LANG } from "../../constants/language";
 import StepFirst from "./register-steps/stepFirst";
-import StepThird from "./register-steps/stepThird"
-import StepFour from "./register-steps/stepFour"
+import StepSecond from "./register-steps/StepSecond";
+import StepThird from "./register-steps/StepThird"
+import StepFour from "./register-steps/StepFour"
 import { addAccountDetails, addEmployeeProfile, checkCompanyStatus, sendCompanyReferral, verifyOtp } from "../../services/onBoardingService";
-import StepFive from "./register-steps/stepFive";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -72,7 +72,7 @@ const Signin = () => {
   }, [setStep])
 
 
-  const stepSecondFormik = useFormik({
+  const stepFirstFormik = useFormik({
     initialValues: stepFirstInitialValues,
     validationSchema: stepFirstRegisterSchema,
 
@@ -80,7 +80,6 @@ const Signin = () => {
       setLoading(true);
       try {
         const validateEmail = await checkCompanyStatus({ ...values });
-
         if (validateEmail.status == 200) {
           if (validateEmail?.data?.data?.isCompanyVerified) {
             toast.success(validateEmail.data.responseMessage);
@@ -102,11 +101,6 @@ const Signin = () => {
         } else if (validateEmail.status == 404) {
           toast.error("Something went wrong");
         }
-
-
-
-
-
       } catch (error: any) {
         console.log(error, loading)
         toast.error(error?.response?.data?.responseMessage);
@@ -116,7 +110,7 @@ const Signin = () => {
     },
   });
 
-  const stepthirdFormik = useFormik({
+  const stepSecondFormik = useFormik({
     initialValues: stepThirdInitialValues,
     validationSchema: stepThirdRegisterSchema,
     onSubmit: async (values, { setSubmitting }) => {
@@ -147,7 +141,7 @@ const Signin = () => {
     },
   });
 
-  const stepFourFormik = useFormik({
+  const stepthirdFormik = useFormik({
     initialValues: stepFourInitialValues,
     validationSchema: stepFourRegisterSchema,
     onSubmit: async (values, { setSubmitting }) => {
@@ -174,7 +168,7 @@ const Signin = () => {
     },
   });
 
-  const stepFiveFormik = useFormik({
+  const stepFourFormik = useFormik({
     initialValues: stepFiveInitialValues,
     validationSchema: stepFiveRegisterSchema,
     onSubmit: async (values, { setSubmitting }) => {
@@ -219,19 +213,16 @@ const Signin = () => {
 
     switch (activeStep) {
       case 1: {
-        return <StepFirst formik={stepSecondFormik} makeReferral={makeReferral} />;
+        return <StepFirst formik={stepFirstFormik} makeReferral={makeReferral} />;
       }
       case 2: {
-        // return <StepSecond formik={stepSecondFormik}  makeReferral={makeReferral} />;
+        return <StepSecond formik={stepSecondFormik} otp={otp} setOtp={setOtp} submitDetails={submitDetails} error={error} setError={setError} />;
       }
       case 3: {
-        return <StepThird formik={stepthirdFormik} otp={otp} setOtp={setOtp} submitDetails={submitDetails} error={error} setError={setError} />;
+        return <StepThird formik={stepthirdFormik} submitDetails={submitDetails} />;
       }
       case 4: {
         return <StepFour formik={stepFourFormik} submitDetails={submitDetails} />;
-      }
-      case 5: {
-        return <StepFive formik={stepFiveFormik} submitDetails={submitDetails} />;
       }
     }
   }

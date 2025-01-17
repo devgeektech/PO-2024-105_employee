@@ -8,7 +8,7 @@ import GlobeIcon from "../../../icons/GlobeIcon";
 import PhoneIcon from "../../../icons/PhoneIcon";
 import ErrorText from "../../../core/components/error-text";
 
-const StepFour = ({ formik, submitDetails }: any) => {
+const StepThird = ({ formik, submitDetails }: any) => {
   return (
     <>
       <div className="main-wrapper authendication-pages">
@@ -148,4 +148,4 @@ const StepFour = ({ formik, submitDetails }: any) => {
   );
 };
 
-export default StepFour;
+export default StepThird;

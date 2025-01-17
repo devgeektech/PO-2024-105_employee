@@ -8,7 +8,7 @@ import PhoneIcon from "../../../icons/PhoneIcon";
 import TimerIcon from "../../../icons/TimerIcon";
 import CalendarIcon from "../../../icons/CalendarIcon";
 
-const StepFive = ({ formik, submitDetails }: any) => {
+const StepFour = ({ formik, submitDetails }: any) => {
   useEffect(() => {
     formik.setFieldValue("email", submitDetails.email);
   }, []);
@@ -174,4 +174,4 @@ const StepFive = ({ formik, submitDetails }: any) => {
   );
 };
 
-export default StepFive;
+export default StepFour;

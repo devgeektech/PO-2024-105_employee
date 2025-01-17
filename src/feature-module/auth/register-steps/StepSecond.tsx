@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { LANG } from "../../../constants/language";
 import { AxiosError } from "axios";
 
-const StepThird = ({ formik, otp, setOtp, submitDetails, error, setError }: any) => {
+const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any) => {
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
   const handleOtpChange = (index: number, value: string) => {
     if (/^[0-9]?$/.test(value)) {
@@ -153,4 +153,4 @@ const StepThird = ({ formik, otp, setOtp, submitDetails, error, setError }: any)
   );
 };
 
-export default StepThird;
+export default StepSecond;

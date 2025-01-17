@@ -33,8 +33,8 @@ import SelectRoles from "../auth/select-roles";
 import Settings from "../settings/page";
 import ValidationRedirect from "../auth/validation-redirect";
 import ConfirmEmail from "../auth/confirm-email";
-import StepFive from "../auth/register-steps/stepFive";
-import StepThird from "../auth/register-steps/stepThird";
+import StepFive from "../auth/register-steps/StepFour";
+import StepThird from "../auth/register-steps/StepSecond";
 import StepSecond from "../auth/register-steps/stepFirst";
 import EditSetting from "../settings/Edit/page";
 import SubscriptionSuccess from "../subscription/Cards/page";
@@ -47,7 +47,7 @@ import Subscription from "../subscription/page";
 import ThankYou from "../auth/register-steps/thankYou";
 import path from "path";
 import Redirect from "../subscription/Redirect/page";
-import StepFour from "../auth/register-steps/stepFour";
+import StepFour from "../auth/register-steps/StepThird";
 
 const routes = all_routes;
 
