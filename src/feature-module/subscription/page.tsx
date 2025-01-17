@@ -35,7 +35,9 @@ export default function Subscription() {
       name: item.name,
       description: item.description,
       partners: partners,
-      subscriptionId: item._id};
+      subscriptionId: item._id,
+      packageId: item.packageId
+    };
       try {
         const result = await createPayment(payload);
           if (result.status == 200) {
