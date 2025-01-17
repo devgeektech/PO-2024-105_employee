@@ -118,7 +118,7 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                     name="dob"
                                     className="form-control commonInput"
                                     placeholder="Date of birth (optional)"
-                                    max={new Date().toISOString().split("T")[0]} // Set max to today's date
+                                    max={new Date(new Date().setFullYear(new Date().getFullYear() - 16)).toISOString().split("T")[0]} // Max date is 16 years ago
                                     onChange={(ev: any) => {
                                       formik.setFieldValue("dob", ev.target.value);
                                     }}

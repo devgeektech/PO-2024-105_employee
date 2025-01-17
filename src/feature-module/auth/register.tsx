@@ -63,10 +63,10 @@ const Signin = () => {
   const [step, setStep] = useState<number>(1);
   const [loading, setLoading] = useState(false);
   const [isVerifiedBussiness, setIsVerifiedBussiness] = useState<any>(false);
-  const [companyName, setCompanyName] = useState<any>("");
-  const [companyEmail, setDomainName] = useState<any>("");
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [submitDetails, setSubmitDetails] = useState({ email: "" });
+  const [companyId, setCompanyId] = useState<any>("");
+
 
   useEffect(() => {
   }, [setStep])
@@ -84,8 +84,9 @@ const Signin = () => {
           if (validateEmail?.data?.data?.isCompanyVerified) {
             toast.success(validateEmail.data.responseMessage);
 
-            const result = await addEmployeeProfile({ ...values });
+            const result = await addEmployeeProfile({ ...values, companyId: validateEmail?.data?.data?.companyId });
             setSubmitDetails({ ...values });
+            setCompanyId({companyId: validateEmail?.data?.data?.companyId})
 
             if (result.status == 200) {
               toast.success(result.data.responseMessage);
@@ -122,7 +123,7 @@ const Signin = () => {
           if (result.status == 200) {
             toast.success("Otp Verified Successfully");
             setError(null)
-            setStep(5);
+            setStep(4);
           }
           setOtp(["", "", "", ""]);
         }
@@ -176,7 +177,8 @@ const Signin = () => {
       try {
         let partnerData = {
           ...submitDetails,
-          ...values
+          ...values,
+          ...companyId,
         };
         const result = await addAccountDetails(partnerData);
 
@@ -201,11 +203,11 @@ const Signin = () => {
   }
 
   const onSkipNow = () => {
-    setStep(5);
+    setStep(4);
   }
 
   const makeReferral = () => {
-    setStep(4);
+    setStep(3);
   }
 
 
