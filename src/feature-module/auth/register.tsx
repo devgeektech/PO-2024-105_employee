@@ -6,7 +6,6 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { LANG } from "../../constants/language";
 import StepFirst from "./register-steps/stepFirst";
-import StepSecond from "./register-steps/stepSecond";
 import StepThird from "./register-steps/stepThird"
 import StepFour from "./register-steps/stepFour"
 import { addAccountDetails, addEmployeeProfile, checkCompanyStatus, sendCompanyReferral, verifyOtp } from "../../services/onBoardingService";
@@ -16,16 +15,12 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 
 const stepFirstInitialValues = {
-  companyName: "",
-}
-const stepSecondInitialValues = {
   email: ""
 }
 const stepThirdInitialValues = {
   otp: ""
 }
 const stepFourInitialValues = {
-  // companyEmail: "",
   companyName: "",
 }
 const stepFiveInitialValues = {
@@ -36,11 +31,14 @@ const stepFiveInitialValues = {
 }
 
 const stepFirstRegisterSchema = Yup.object().shape({
-  companyName: Yup.string().required("Field is required"),
-});
-
-const stepSecondRegisterSchema = Yup.object().shape({
-  email: Yup.string().email("Please add valid email").required(),
+  email: Yup.string()
+    .matches(
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+      'Please enter a valid email address'
+    )
+    .min(3, 'Minimum 3 symbols')
+    .max(50, 'Maximum 50 symbols')
+    .required("Field is required"),
 });
 
 const stepThirdRegisterSchema = Yup.object().shape({
@@ -48,7 +46,6 @@ const stepThirdRegisterSchema = Yup.object().shape({
 
 const stepFourRegisterSchema = Yup.object().shape({
   companyName: Yup.string().required("Field is required"),
-  // companyEmail: Yup.string().required("Domain name is required"),
 });
 
 const stepFiveRegisterSchema = Yup.object().shape({
@@ -69,63 +66,47 @@ const Signin = () => {
   const [companyName, setCompanyName] = useState<any>("");
   const [companyEmail, setDomainName] = useState<any>("");
   const [otp, setOtp] = useState(["", "", "", ""]);
-  const [submitDetails, setSubmitDetails] = useState({
-    // name: "",
-    companyName: "",
-    email: "",
-    // businessWebsite: "",
-    // phone: "",
-  });
+  const [submitDetails, setSubmitDetails] = useState({ email: "" });
 
   useEffect(() => {
   }, [setStep])
 
-  const stepOneFormik = useFormik({
-    initialValues: stepFirstInitialValues,
-    validationSchema: stepFirstRegisterSchema,
-    onSubmit: async (values, { setSubmitting }) => {
-      setLoading(true);
-      try {
-        const result = await checkCompanyStatus({ ...values });
-        if (result.status == 200) {
-          if (result?.data?.data?.isCompanyVerified) {
-            toast.success(result.data.responseMessage);
-            setStep(2);
-          }
-          else {
-            toast.error(result.data.responseMessage);
-            setStep(4);
-          }
-        } else if (result.status == 404) {
-          toast.error("Something went wrong");
-        }
-      } catch (error) {
-        console.log(error, loading)
-        setSubmitting(false);
-        setLoading(false);
-      }
-    },
-  });
 
   const stepSecondFormik = useFormik({
-    initialValues: stepSecondInitialValues,
-    validationSchema: stepSecondRegisterSchema,
+    initialValues: stepFirstInitialValues,
+    validationSchema: stepFirstRegisterSchema,
+
     onSubmit: async (values, { setSubmitting }) => {
       setLoading(true);
       try {
-        let stepTwoPayload = {
-          companyName,
-          ...values
-        };
-        const result = await addEmployeeProfile(stepTwoPayload);
-        setSubmitDetails(stepTwoPayload);
+        const validateEmail = await checkCompanyStatus({ ...values });
 
-        if (result.status == 200) {
-          toast.success(result.data.responseMessage);
-          setStep(3);
-        } else if (result.status == 404) {
+        if (validateEmail.status == 200) {
+          if (validateEmail?.data?.data?.isCompanyVerified) {
+            toast.success(validateEmail.data.responseMessage);
+
+            const result = await addEmployeeProfile({ ...values });
+            setSubmitDetails({ ...values });
+
+            if (result.status == 200) {
+              toast.success(result.data.responseMessage);
+              setStep(2);
+            } else if (result.status == 404) {
+              toast.error("Something went wrong");
+            }
+          }
+          else {
+            toast.error(validateEmail.data.responseMessage);
+            // setStep(4);
+          }
+        } else if (validateEmail.status == 404) {
           toast.error("Something went wrong");
         }
+
+
+
+
+
       } catch (error: any) {
         console.log(error, loading)
         toast.error(error?.response?.data?.responseMessage);
@@ -238,10 +219,10 @@ const Signin = () => {
 
     switch (activeStep) {
       case 1: {
-        return <StepFirst formik={stepOneFormik} setIsVerifiedBussiness={setIsVerifiedBussiness} setCompanyName={setCompanyName} makeReferral={makeReferral} />;
+        return <StepFirst formik={stepSecondFormik} makeReferral={makeReferral} />;
       }
       case 2: {
-        return <StepSecond formik={stepSecondFormik} onBackClick={onBackClick} />;
+        // return <StepSecond formik={stepSecondFormik}  makeReferral={makeReferral} />;
       }
       case 3: {
         return <StepThird formik={stepthirdFormik} otp={otp} setOtp={setOtp} submitDetails={submitDetails} error={error} setError={setError} />;

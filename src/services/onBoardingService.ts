@@ -8,7 +8,6 @@ export const ADD_PROFILE = `/auth/employee/addProfile`;
 
 
 
-
 export const checkCompanyStatus = async (payload: any) => {
    return http.post(CHECK_COMPANY_STATUS, payload);
 }
