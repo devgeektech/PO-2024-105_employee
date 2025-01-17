@@ -192,7 +192,7 @@ export default function AccountSetting({ userDetail }: any) {
                     <input
                       type="date"
                       placeholder="Date of birth"
-                      max={new Date().toISOString().split("T")[0]} // Set max to today's date
+                      max={new Date(new Date().setFullYear(new Date().getFullYear() - 16)).toISOString().split("T")[0]} // Max date is 16 years ago
                       {...formik.getFieldProps("dob")}
                       className={clsx("commonInput form-control", {
                         "border border-danger":
