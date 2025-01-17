@@ -1,15 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { createPayment, getEmployeePlan, getSubscriptionList } from '../../../services/subscriptions.service';
+import { createPayment, deleteSubscription, getEmployeePlan, getSubscriptionList } from '../../../services/subscriptions.service';
 import { all_routes } from '../../router/all_routes';
+import { ConfirmDeleteModal } from './delete-modal/page';
+import { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 export default function SubscriptionDetails() {
     const [subscriptionList, setSubscriptionList] = useState<any[]>([]);
     const location = useLocation();
     const [authToken, setAuthToken] = useState("");
+    const [modatStatus, setModalStatus] = useState(false);
     const navigate = useNavigate();
     const route = all_routes;
+    const handleClose = () => {
+      setModalStatus(false)
+    }
+    const handleSubmit = async() => {
+      try {
+        const result = await deleteSubscription();
+          if (result.status == 200) {
+            navigate(`${route.subscription}`)
+          }
+         } catch (error) {
+        if (error instanceof AxiosError) {
+            toast.error(error.response?.data?.responseMessage)
+        }
+      }
+    }
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const token = queryParams.get("token");
@@ -67,7 +86,7 @@ export default function SubscriptionDetails() {
                     </ul>
                     
                     <button type='button' className="btn btn-dark w-100 mt-4" onClick={()=>navigate(`${route.subscription}`)}>Upgrade subscription</button>
-                    <button type='button' className="btn btn-outline-danger w-100 mt-3">
+                    <button type='button' className="btn btn-outline-danger w-100 mt-3" onClick={()=>setModalStatus(true)}>
                       Cancel subscription
                     </button>
                   </div>
@@ -75,6 +94,7 @@ export default function SubscriptionDetails() {
               </div>
             ))}
           </div>
+          <ConfirmDeleteModal show={modatStatus} handleClose={handleClose} handleSubmit={handleSubmit} />
         </div>
       );
 }
