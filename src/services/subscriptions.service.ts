@@ -27,6 +27,11 @@ export const createPayment = (payload: any) => {
   return http.post(`/subscription/createPayment`, payload);
 };
 
+export const deleteSubscription = () => {
+  return http.delete(`/subscription/deletePaymentSubscription`);
+};
+
+
 export const completePayment = async (id: any, payload: any) => {
   return http.put(`/subscription/completePayment/${id}`, payload);
 };
