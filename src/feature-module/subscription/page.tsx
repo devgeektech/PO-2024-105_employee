@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss';
 import { Link, useLocation } from 'react-router-dom';
-import { Tab } from 'react-bootstrap';
+import { Spinner, Tab } from 'react-bootstrap';
 import CommonCard from '../../core/components/commonCard';
 import { createPayment, getSubscriptionList } from '../../services/subscriptions.service';
 import { ButtonGroup, ToggleButton, Container } from "react-bootstrap";
@@ -14,7 +14,8 @@ export default function Subscription() {
     const location = useLocation();
     const [authToken, setAuthToken] = useState("");
     const [selectedPlan, setSelectedPlan] = useState("Starter");
-  
+    const [loading, setLoading] = useState(false);
+
     const handlePlanChange = (plan:any) => {
       let array = []
       array.push(plan) 
@@ -39,15 +40,18 @@ export default function Subscription() {
       packageId: item.packageId
     };
       try {
+        setLoading(true)
         const result = await createPayment(payload);
           if (result.status == 200) {
               let client_secret = result?.data?.data?.client_secret
               let publice_key = "egy_pk_test_VqfQMNR7BLSrbC6RZZYtKKWSWeBSlOJY"
               let url = `https://accept.paymob.com/unifiedcheckout/?publicKey=${publice_key}&clientSecret=${client_secret}`;
               window.location.href = url
+              setLoading(false)
           }
          } catch (error) {
         if (error instanceof AxiosError) {
+            setLoading(false)
             toast.error(error.response?.data?.responseMessage)
         }
       }
@@ -128,10 +132,12 @@ export default function Subscription() {
                     }}>
                       Go with this plan <span className="arrow">→</span>
                     </button>
-                    {/* <button type='button' className="btn btn-dark w-100 mt-4">Upgrade subscription</button> */}
-                    {/* <button type='button' className="btn btn-outline-danger w-100 mt-3">
-                      Cancel subscription
-                    </button> */}
+                    {loading && (
+                      <span className='p-3'>
+                        <Spinner animation="border" role="status">
+                          <span className="visually-hidden">Loading...</span>
+                        </Spinner></span>)
+                    }
                   </div>
                 </div>
               </div>
