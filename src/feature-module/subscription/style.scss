@@ -1,22 +1,26 @@
 .plan-selector {
     border: 1px solid #ddd;
     border-radius: 50px;
-    overflow: hidden;
+    overflow: auto;
     background-color: #f5f5f5;
     width: fit-content;
+    padding: 8px;
+    max-width: 90%;
+    scrollbar-width: thin;
+    margin-bottom: 1rem;
   }
   
   .plan-button {
     padding: 10px 20px;
     font-size: 1rem;
-    border-radius: 0;
+    border-radius: 50px !important;
     flex: 1;
   }
   
   .plan-button.active-plan {
     background-color: #000;
     color: #fff;
-    border-radius: 20px;
+    border-radius: 50px !important;
   }
   
   .plan-button:hover {
@@ -34,14 +38,14 @@
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    background-color: #0e1621; /* Dark background color */
+    background-color: #2194FF; /* Dark background color */
     color: #fff; /* White text color */
     font-size: 16px;
     font-weight: 500;
     border: none;
     border-radius: 25px; /* Rounded corners */
     cursor: pointer;
-    width: fit-content;
+    width: 100%;
     transition: background-color 0.3s ease;
   }
   
@@ -52,9 +56,78 @@
   .custom-btn:hover {
     background-color: #1a2430; /* Slightly lighter color on hover */
   }
+  .planDetail {
+    .card {
+      .card-body.p-3 {
+        background: #2194FF0F;
+      }
+      h5 {
+        font-family: Afacad;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28.8px;
+      }
+      h6 {
+        strong {
+          font-size: 48px;
+          font-weight: 700;
+          line-height: 48px;
+          letter-spacing: -0.02em;
+          text-align: left;
+          color: #000;
+        }
+        span {
+          color: #404040;
+        }
+      }
+      p.get {
+        font-family: Afacad;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        color: #030d12;
+        margin-bottom: 20px;
+      }
+      ul {
+        li {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 19.2px;
+          text-align: left;
+          color: #2B2B2B;
+          margin-bottom: 12.5px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+      }
+      .app-wrapper {
+        margin-top: 20px;
+        ul {
+          display: flex;
+          gap: 1rem;
+          overflow-x: auto;
+          scrollbar-width: thin;
+          li {
+            display: flex;
+            flex-direction: column;
+            h5 {
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 19.2px;
+              text-align: center;
+              color: #2B2B2B;
+            }
+          }
+        }
+      }
+    }
+  }
 
 @media only screen and (max-width: 767px) {
-
+  .planDetail .card {
+    padding: 0;
+  }
 }
 
 @media only screen and (max-width: 575px) {
