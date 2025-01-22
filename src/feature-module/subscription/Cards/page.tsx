@@ -4,9 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { completePayment } from "../../../services/subscriptions.service";
+import { useNavigate } from "react-router-dom";
+import { all_routes } from "../../router/all_routes";
 
 const SubscriptionCard = () => {
-
+  const navigate = useNavigate();
+  const route = all_routes;
   const completePaymentMethod = async(id:any) => {
     try {
       const result:any = await completePayment(id, {});
@@ -60,6 +63,9 @@ const SubscriptionCard = () => {
               width: "100%",
               borderRadius: "20px",
               padding: "10px",
+            }}
+            onClick={()=> {
+              navigate(`${route.subscriptionRedirect}`)
             }}
           >
             Home
