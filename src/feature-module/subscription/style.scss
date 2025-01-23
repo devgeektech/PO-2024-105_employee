@@ -33,6 +33,32 @@
     box-shadow: none;
   }
 
+  .content-center {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+  }
+  .active-plan-label {
+    background-color: #4285f4; /* Light blue background */
+    color: #fff; /* White text */
+    border-radius: 30px; /* Rounded corners */
+    padding: 10px 20px; /* Add padding for height and width */
+    display: inline-flex; /* Inline flex layout */
+    align-items: center; /* Vertically center content */
+    gap: 8px; /* Space between icon and text */
+    font-weight: 500; /* Semi-bold text */
+    font-size: 16px; /* Font size */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    cursor: default; /* Default cursor to show it's non-interactive */
+    opacity: 1; /* Fully visible */
+    width: 90%;
+    justify-content: center
+  }
+  
+  .check-icon {
+    font-size: 18px; /* Icon size */
+  }
   .custom-btn {
     display: flex;
     align-items: center;

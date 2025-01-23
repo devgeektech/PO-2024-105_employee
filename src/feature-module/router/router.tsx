@@ -1,16 +1,21 @@
 import React from "react";
 import { publicRoutes, withoutHeaderRoutes } from "./router.link";
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import Header from "../common/header";
 import Footer from "../../core/components/footer/page";
 // import Footer from "../common/footer";
 
 const AllRoutes = () => {
+  const location = useLocation();
+
+  console.log(location.pathname,">>> pathname")
   const HeaderLayout = () => (
     <>
-        <Header />
-        <Outlet />
-        <Footer />
+      {!location.pathname.includes("/subscription") &&
+        !location.pathname.includes("/subscription/details") && <Header />}
+      <Outlet />
+      {!location.pathname.includes("/subscription") &&
+        !location.pathname.includes("/subscription/details") && <Footer />}
       {/* <Loader/> */}
     </>
   );
