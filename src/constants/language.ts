@@ -85,6 +85,7 @@ export const LANG={
     LASTNAME_IS_REQUIRED: "Last name is required",
     MAXIMUM_LIMIT_HUNDRED_CHAR:"The maximum restriction is 13 characters",
     MINIMUM_LIMIT_PHONE_CHAR:"The minimum restriction is 10 characters",
+    MAXIMUM_LIMIT_PHONE_CHAR:"The maximum restriction is 12 characters",
     MEMBER_EMAIL:"Member's email",
     NAME:"Name",
     SIBLING_DETAILS:"Sibling details",
