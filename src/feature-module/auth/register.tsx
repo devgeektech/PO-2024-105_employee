@@ -13,6 +13,7 @@ import { addAccountDetails, addEmployeeProfile, checkCompanyStatus, sendCompanyR
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
+const nameRegex = /^[A-Za-z][A-Za-z\s]{0,49}[A-Za-z]$/;
 
 const stepFirstInitialValues = {
   email: ""
@@ -49,9 +50,9 @@ const stepFourRegisterSchema = Yup.object().shape({
 });
 
 const stepFiveRegisterSchema = Yup.object().shape({
-  firstName: Yup.string().required("Field is required"),
-  lastName: Yup.string().required("Field is required"),
-  phone: Yup.string().min(10, LANG.MINIMUM_LIMIT_PHONE_CHAR).max(13, LANG.MAXIMUM_LIMIT_HUNDRED_CHAR).matches(phoneRegExp, 'Phone number is not valid'),
+  firstName: Yup.string().matches(nameRegex, 'The first name can only include letters, spaces, hyphens, or apostrophes.').required("Field is required"),
+  lastName: Yup.string().matches(nameRegex, 'The last name can only include letters, spaces, hyphens, or apostrophes.').required("Field is required"),
+  phone: Yup.string().min(10, LANG.MINIMUM_LIMIT_PHONE_CHAR).max(12, LANG.MAXIMUM_LIMIT_PHONE_CHAR).matches(phoneRegExp, 'Phone number is not valid'),
   dob: Yup.string(),
 });
 
@@ -82,7 +83,7 @@ const Signin = () => {
         const validateEmail = await checkCompanyStatus({ ...values });
         if (validateEmail.status == 200) {
           if (validateEmail?.data?.data?.isCompanyVerified) {
-            toast.success(validateEmail.data.responseMessage);
+            // toast.success(validateEmail.data.responseMessage);
 
             const result = await addEmployeeProfile({ ...values, companyId: validateEmail?.data?.data?.companyId });
             setSubmitDetails({ ...values });
