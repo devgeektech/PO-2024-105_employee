@@ -27,6 +27,8 @@ const SubscriptionCard = () => {
     const queryParams = new URLSearchParams(location.search);
       console.log(queryParams,">>> queryParams >>>>")
       const intention_order_id = queryParams.get("order");
+      const token = queryParams.get("token");
+      console.log(token)
       if(intention_order_id){
         console.log(intention_order_id,">>>>> intention order id >>>>>>>>")
         completePaymentMethod(intention_order_id)
