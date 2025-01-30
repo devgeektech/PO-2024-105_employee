@@ -148,7 +148,7 @@ const StepFour = ({ formik, submitDetails }: any) => {
                         </div>
                       </div>
                       {/* <div className="bottom-text text-center">
-                        <p> Already have an account?
+                        <p> Already have an account? {" "}
                           <Link to={"/auth/login"} className="text-underline">Sign in</Link>
                         </p>
                       </div> */}
