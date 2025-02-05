@@ -1,161 +1,178 @@
 .plan-selector {
-    border: 1px solid #ddd;
-    border-radius: 50px;
-    overflow: auto;
-    background-color: #f5f5f5;
-    width: fit-content;
-    padding: 8px;
-    max-width: 90%;
-    scrollbar-width: thin;
-    margin-bottom: 1rem;
-  }
-  
-  .plan-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 50px !important;
-    flex: 1;
-  }
-  
-  .plan-button.active-plan {
-    background-color: #000;
-    color: #fff;
-    border-radius: 50px !important;
-  }
-  
-  .plan-button:hover {
-    background-color: #e9ecef;
-  }
-  
-  .plan-selector .btn {
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  overflow: auto;
+  background-color: #f5f5f5;
+  width: fit-content;
+  padding: 8px;
+  max-width: 90%;
+  scrollbar-width: thin;
+  margin-bottom: 1rem;
+}
 
-  .content-center {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    margin: 0; 
-  }
-  .active-plan-label {
-    background-color: #4285f4; /* Light blue background */
-    color: #fff; /* White text */
-    border-radius: 30px; /* Rounded corners */
-    padding: 10px 20px; /* Add padding for height and width */
-    display: inline-flex; /* Inline flex layout */
-    align-items: center; /* Vertically center content */
-    gap: 8px; /* Space between icon and text */
-    font-weight: 500; /* Semi-bold text */
-    font-size: 16px; /* Font size */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    cursor: default; /* Default cursor to show it's non-interactive */
-    opacity: 1; /* Fully visible */
-    width: 90%;
-    justify-content: center
-  }
-  
-  .check-icon {
-    font-size: 18px; /* Icon size */
-  }
-  .custom-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: #2194FF; /* Dark background color */
-    color: #fff; /* White text color */
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    border-radius: 25px; /* Rounded corners */
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-  }
-  
-  .custom-btn .arrow {
-    margin-left: 8px; /* Add some space between text and arrow */
-  }
-  
-  .custom-btn:hover {
-    background-color: #1a2430; /* Slightly lighter color on hover */
-  }
-  .planDetail {
-    .card {
-      .card-body.p-3 {
-        background: #2194FF0F;
+.plan-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 50px !important;
+  flex: 1;
+}
+
+.plan-button.active-plan {
+  background-color: #000;
+  color: #fff;
+  border-radius: 50px !important;
+}
+
+.plan-button:hover {
+  background-color: #e9ecef;
+}
+
+.plan-selector .btn {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.active-plan-label {
+  background-color: #4285f4; /* Light blue background */
+  color: #fff; /* White text */
+  border-radius: 30px; /* Rounded corners */
+  padding: 10px 20px; /* Add padding for height and width */
+  display: inline-flex; /* Inline flex layout */
+  align-items: center; /* Vertically center content */
+  gap: 8px; /* Space between icon and text */
+  font-weight: 500; /* Semi-bold text */
+  font-size: 16px; /* Font size */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  cursor: default; /* Default cursor to show it's non-interactive */
+  opacity: 1; /* Fully visible */
+  width: 90%;
+  justify-content: center;
+}
+
+.check-icon {
+  font-size: 18px; /* Icon size */
+}
+.custom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #2194ff; /* Dark background color */
+  color: #fff; /* White text color */
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px; /* Rounded corners */
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.custom-btn .arrow {
+  margin-left: 8px; /* Add some space between text and arrow */
+}
+
+.custom-btn:hover {
+  background-color: #1a2430; /* Slightly lighter color on hover */
+}
+.planDetail {
+  .card {
+    .card-body.p-3 {
+      background: #2194ff0f;
+    }
+    h5 {
+      font-family: Afacad;
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 28.8px;
+    }
+    h6 {
+      strong {
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 48px;
+        letter-spacing: -0.02em;
+        text-align: left;
+        color: #000;
       }
-      h5 {
-        font-family: Afacad;
-        font-size: 24px;
-        font-weight: 500;
-        line-height: 28.8px;
+      span {
+        color: #404040;
       }
-      h6 {
-        strong {
-          font-size: 48px;
-          font-weight: 700;
-          line-height: 48px;
-          letter-spacing: -0.02em;
-          text-align: left;
-          color: #000;
-        }
-        span {
-          color: #404040;
-        }
+    }
+    p.get {
+      font-family: Afacad;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 24px;
+      color: #030d12;
+      margin-bottom: 20px;
+    }
+    ul {
+      li {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19.2px;
+        text-align: left;
+        color: #2b2b2b;
+        margin-bottom: 12.5px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
       }
-      p.get {
-        font-family: Afacad;
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 24px;
-        color: #030d12;
-        margin-bottom: 20px;
-      }
+    }
+    .app-wrapper {
+      margin-top: 20px;
       ul {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        scrollbar-width: thin;
         li {
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 19.2px;
-          text-align: left;
-          color: #2B2B2B;
-          margin-bottom: 12.5px;
           display: flex;
-          align-items: center;
-          gap: 5px;
-        }
-      }
-      .app-wrapper {
-        margin-top: 20px;
-        ul {
-          display: flex;
-          gap: 1rem;
-          overflow-x: auto;
-          scrollbar-width: thin;
-          li {
-            display: flex;
-            flex-direction: column;
-            h5 {
-              font-size: 16px;
-              font-weight: 400;
-              line-height: 19.2px;
-              text-align: center;
-              color: #2B2B2B;
-            }
+          flex-direction: column;
+          h5 {
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 19.2px;
+            text-align: center;
+            color: #2b2b2b;
           }
         }
       }
     }
   }
+}
+
+.centered-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+  width: 90%; /* Increase width on smaller screens */
+  max-width: 600px; /* Optional: Limit max width */
+  margin: auto; /* Center horizontally */
+}
 
 @media only screen and (max-width: 767px) {
   .planDetail .card {
     padding: 0;
   }
+  .centered-message {
+    width: 95%;
+  }
 }
 
 @media only screen and (max-width: 575px) {
-
+  .centered-message {
+    width: 95%;
+  }
 }

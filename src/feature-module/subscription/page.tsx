@@ -227,6 +227,14 @@ export default function Subscription() {
                 </div>
               </div>
             ))}
+            {
+            subscriptionList &&  subscriptionList.length == 0 && plansList && plansList.length == 0 &&  
+            (
+              <div className="centered-message">
+                No subscription has been assigned to this company. Please contact support for assistance.
+              </div>
+            )
+            }
         </div>
       </div>
     );
