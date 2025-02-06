@@ -45,9 +45,9 @@ import CheckIn from "../check-in/page";
 import StepFirst from "../auth/register-steps/stepFirst";
 import Subscription from "../subscription/page";
 import ThankYou from "../auth/register-steps/thankYou";
-import path from "path";
 import Redirect from "../subscription/Redirect/page";
 import StepFour from "../auth/register-steps/StepThird";
+import LoginVerification from "../auth/login-verification";
 
 const routes = all_routes;
 
@@ -199,16 +199,6 @@ const publicRoutes = [
     element: <Redirect />,
     route: Route
   },
-  // {
-  //   path: routes.classesCreate,
-  //   element: <CreateClass/>,
-  //   route: Route,
-  // },
-  // {
-  //   path: routes.classesEdit,
-  //   element: <CreateClass/>,
-  //   route: Route,
-  // },
   {
     path: routes.booking,
     element: <Booking/>,
@@ -240,6 +230,11 @@ const withoutHeaderRoutes = [
   {
     path: routes.login,
     element: <Login />,
+    route: Route,
+  },
+  {
+    path: routes.loginVerification,
+    element: <LoginVerification/>,
     route: Route,
   },
   {

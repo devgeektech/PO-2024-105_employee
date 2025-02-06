@@ -40,14 +40,16 @@ const Login = () => {
         const result = await loginUser(values);
 
         if (result.status == 200) {
-          toast.success(LANG.LOGIN_SUCCESSFULLY);
+          toast.success('The profile verification code has been sent to your email.');
           localStorage.setItem('token', result.data?.data?.token);
           localStorage.setItem('id', result.data?.data?._id);
 
-          dispatch(setLogin(true));
+          // dispatch(setLogin(true));
           dispatch(setUserDetail({userDetail: result.data?.data}));
           http.defaults.headers['Authorization'] = result.data?.data?.token;
-          navigate(`${route.subscription}?token=${authToken || localStorage.getItem("token")}`);
+
+          navigate(route.loginVerification)
+          // navigate(`${route.subscription}?token=${authToken || localStorage.getItem("token")}`);
 
         } else if (result.status == 404) {
           console.log(values)

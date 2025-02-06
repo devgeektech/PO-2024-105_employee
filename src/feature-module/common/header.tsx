@@ -19,6 +19,7 @@ const Header = () => {
   const user = useSelector((state: any) => state.user);
   const [authToken, setAuthToken] = useState("");
 
+console.log('headerRef -----------  ',headerRef);
 
   // const MenuToggle = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,47 +63,6 @@ const Header = () => {
       hasSubRoute: false,
       showSubRoute: false
     },
-    // {
-    //   tittle: "Profile",
-    //   showAsTab: false,
-    //   separateRoute: true,
-    //   routes: routes.profile,
-    //   hasSubRoute: false,
-    //   showSubRoute: false
-    // },
-
-    // {
-    //   tittle: "Dashboard",
-    //   showAsTab: false,
-    //   separateRoute: true,
-    //   routes: routes.contactUs,
-    //   hasSubRoute: false,
-    //   showSubRoute: false
-    // },
-    // {
-    //   tittle: "Check-in",
-    //   showAsTab: false,
-    //   separateRoute: true,
-    //   routes: routes.contactUs,
-    //   hasSubRoute: false,
-    //   showSubRoute: false
-    // },
-    // {
-    //   tittle: "Bookings",
-    //   showAsTab: false,
-    //   separateRoute: true,
-    //   routes: routes.contactUs,
-    //   hasSubRoute: false,
-    //   showSubRoute: false
-    // },
-    // {
-    //   tittle: "Payments & History",
-    //   showAsTab: false,
-    //   separateRoute: true,
-    //   routes: routes.contactUs,
-    //   hasSubRoute: false,
-    //   showSubRoute: false
-    // },
   ];
 
   const customStyle = {

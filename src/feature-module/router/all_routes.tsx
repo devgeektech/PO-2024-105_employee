@@ -142,6 +142,7 @@ export const all_routes = {
   forgotPasssword: "/auth/forgot-password",
   verifyAccount: "/auth/verification",
   confirmEmail: "/auth/confirm-email",
+  loginVerification: "/auth/loginVerification",
 
 
   // setting Edit Routes

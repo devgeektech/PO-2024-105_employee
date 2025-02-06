@@ -12,6 +12,12 @@ export const loginUser = async (payload: any) => {
   return http.post('/auth/employee/login', payload);
 }
 
+export const loginVerification = async (payload: any) => {
+  return http.put('/auth/employee/verifyCode', payload);
+}
+
+
+
 
 export const loginByToken = async (payload: any) => {
   return http.post('/auth/member/token_login', payload);

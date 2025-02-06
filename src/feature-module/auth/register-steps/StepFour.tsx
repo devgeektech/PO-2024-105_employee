@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import ImageWithBasePath from "../../../core/data/img/ImageWithBasePath";
 import UserIcon from "../../../icons/UserIcon";
 import ErrorText from "../../../core/components/error-text";
-import EmailIcon from "../../../icons/EmailIcon";
 import PhoneIcon from "../../../icons/PhoneIcon";
-import TimerIcon from "../../../icons/TimerIcon";
 import CalendarIcon from "../../../icons/CalendarIcon";
 
 const StepFour = ({ formik, submitDetails }: any) => {
@@ -119,6 +116,7 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                     className="form-control commonInput"
                                     placeholder="Date of birth (optional)"
                                     max={new Date(new Date().setFullYear(new Date().getFullYear() - 16)).toISOString().split("T")[0]} // Max date is 16 years ago
+                                    onKeyDown={(e) => e.preventDefault()} // Prevent typing
                                     onChange={(ev: any) => {
                                       formik.setFieldValue("dob", ev.target.value);
                                     }}

@@ -30,7 +30,7 @@ const AllRoutes = () => {
         </Route>
         <Route path={"/"}>
           {withoutHeaderRoutes.map((route, idx) => (
-            <Route path={route.path} element={route.element} key={idx} />
+            <Route path={route?.path} element={route?.element} key={idx} />
           ))}
         </Route>
       </Routes>
