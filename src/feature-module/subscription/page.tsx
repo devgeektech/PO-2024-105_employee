@@ -137,7 +137,7 @@ export default function Subscription() {
                         />
                       </div>
                       <div className="d-flex flex-column align-items-start">
-                        <h5>Starter</h5>
+                        {/* <h5>Starter</h5> */}
                         <h6 className="text-muted">
                           <strong>${item?.price}</strong>
                           <span>/ Per month</span>

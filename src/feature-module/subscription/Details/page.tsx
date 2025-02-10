@@ -54,6 +54,7 @@ export default function SubscriptionDetails() {
       if (result?.data?.data[0]?.subscriptionDetails) {
         let array = [];
         array.push(result?.data?.data[0]?.subscriptionDetails);
+        console.log(array,">>> array :::")
         setSubscriptionList(array);
       } else {
         navigate(`${route.subscription}`);
@@ -78,7 +79,7 @@ export default function SubscriptionDetails() {
                       <img src="/assets/img/paperPlane.png" alt="paperPlane" />
                     </div>
                     <div className="d-flex flex-column align-items-start">
-                      <h5>Starter</h5>
+                    <h5>{item?.packageInfo?.name ? item.packageInfo.name.charAt(0).toUpperCase() + item.packageInfo.name.slice(1) : ""}</h5>
                       <h6 className="text-muted">
                         <strong>${item?.price}</strong>
                         <span>/ Per month</span>
