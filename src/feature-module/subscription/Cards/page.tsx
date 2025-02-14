@@ -10,7 +10,6 @@ import { all_routes } from "../../router/all_routes";
 const SubscriptionCard = () => {
   const navigate = useNavigate();
   const route = all_routes;
-
   console.log(location.search)
   const completePaymentMethod = async(id:any) => {
     try {
