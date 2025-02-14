@@ -10,6 +10,8 @@ import { all_routes } from "../../router/all_routes";
 const SubscriptionCard = () => {
   const navigate = useNavigate();
   const route = all_routes;
+
+  console.log(location.search)
   const completePaymentMethod = async(id:any) => {
     try {
       const result:any = await completePayment(id, {});
@@ -29,12 +31,13 @@ const SubscriptionCard = () => {
       const intention_order_id = queryParams.get("order");
       const token = queryParams.get("token");
       console.log(token, ">>>> token")
+      console.log(intention_order_id,">>> intenstion_order_id")
       if(intention_order_id){
         console.log(intention_order_id,">>>>> intention order id >>>>>>>>")
         completePaymentMethod(intention_order_id)
       }
     },
-  [])
+  [location.search])
 
   return (
     <div
