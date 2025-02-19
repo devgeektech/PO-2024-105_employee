@@ -1,42 +1,12 @@
 import React, { useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { toast } from "react-toastify";
-import { AxiosError } from "axios";
-import { completePayment } from "../../../services/subscriptions.service";
 import { useNavigate } from "react-router-dom";
 import { all_routes } from "../../router/all_routes";
 
 const SubscriptionCard = () => {
   const navigate = useNavigate();
   const route = all_routes;
-  console.log(location.search)
-  const completePaymentMethod = async(id:any) => {
-    try {
-      const result:any = await completePayment(id, {});
-        if (result.status == 200) {
-           
-        }
-       } catch (error) {
-      if (error instanceof AxiosError) {
-          toast.error(error.response?.data?.responseMessage)
-      }
-    }
-  }
-
-  useEffect(()=>{
-    const queryParams = new URLSearchParams(location.search);
-      console.log(queryParams,">>> queryParams >>>>")
-      const intention_order_id = queryParams.get("order");
-      const token = queryParams.get("token");
-      console.log(token, ">>>> token")
-      console.log(intention_order_id,">>> intenstion_order_id")
-      if(intention_order_id){
-        console.log(intention_order_id,">>>>> intention order id >>>>>>>>")
-        completePaymentMethod(intention_order_id)
-      }
-    },
-  [location.search])
 
   return (
     <div
