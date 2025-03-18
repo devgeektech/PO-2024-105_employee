@@ -60,7 +60,7 @@ const StepFirst = ({ formik, makeReferral }: any) => {
                                 </div>
                               </div>
 
-                            <p className="text-center referralLink">Didn't find your company?{" "}
+                            <p className="text-center referralLink">Not partnered with Fitpond?{" "}
                               <Link className="text-underline" onClick={makeReferral} to={""}> Make a referral</Link>
                             </p>
 
