@@ -132,9 +132,23 @@ const StepThird = ({ formik, submitDetails }: any) => {
               </div>
               <div className="col-12 col-sm-12 col-md-12 col-lg-8 no-padding">
                 <div className="banner-bg register">
-                  <div className="row no-margin h-100">
-                    <div className="col-sm-10 col-md-10 col-lg-10 mx-auto">
-                      <div className="h-100 d-flex justify-content-center align-items-center"></div>
+                  <div className="row no-margin h100">
+                    <div className="col-sm-10 col-md-10 col-lg-12">
+                      {/* <div className="h-100 d-flex justify-content-center align-items-center"></div> */}
+                        <div className="row h-100">
+                          <div className="col-md-6 h50">
+                            <img src="/assets/img/authOne.png" className="img-fluid w-100 h-100" alt="authOne"/>
+                          </div>
+                          <div className="col-md-6  h50">
+                            <img src="/assets/img/authTwo.png" className="img-fluid  w-100 h-100" alt="authTwo"/>
+                          </div>
+                          <div className="col-md-6  h50">
+                            <img src="/assets/img/authThree.png" className="img-fluid w-100 h-100" alt="authOne"/>
+                          </div>
+                          <div className="col-md-6  h50">
+                            <img src="/assets/img/authFour.png" className="img-fluid  w-100 h-100" alt="authTwo"/>
+                          </div>
+                        </div>
                     </div>
                   </div>
                 </div>
