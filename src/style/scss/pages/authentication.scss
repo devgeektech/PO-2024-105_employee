@@ -470,8 +470,19 @@ button.addRelationBtn {
 		.content {
 			.wrapper {
 				header {
-					margin-top: 50px;
-					margin-bottom: 50px;
+					margin-top: 20px;
+					margin-bottom: 30px;
+				}
+				.shadow-card {
+					margin: 20px 0;
+					h2 {
+						margin-bottom: 20px;
+					}
+				}
+			}
+			form  {
+				.btn-block {
+					margin: 16px 0 10px 0;
 				}
 			}
 		}

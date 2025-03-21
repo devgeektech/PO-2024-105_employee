@@ -61,7 +61,7 @@ const Signin = () => {
   const navigate = useNavigate();
   const route = all_routes;
   const [error, setError] = useState<any>(null);
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(4);
   const [loading, setLoading] = useState(false);
   const [isVerifiedBussiness, setIsVerifiedBussiness] = useState<any>(false);
   const [otp, setOtp] = useState(["", "", "", ""]);
