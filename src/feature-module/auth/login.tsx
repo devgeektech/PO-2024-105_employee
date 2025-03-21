@@ -144,7 +144,6 @@ const Login = () => {
                 <div className="banner-bg login">
                   <div className="row no-margin h100">
                     <div className="col-sm-10 col-md-10 col-lg-12">
-                      {/* <div className="h-100 d-flex justify-content-center align-items-center"></div> */}
                         <div className="row h-100">
                           <div className="col-md-6 h50">
                             <img src="/assets/img/authOne.png" className="img-fluid w-100 h-100" alt="authOne"/>

@@ -465,6 +465,36 @@ button.addRelationBtn {
 }
 
 
+@media screen and (max-width: 1600px) {
+	.authendication-pages {
+		.content {
+			.wrapper {
+				header {
+					margin-top: 50px;
+					margin-bottom: 50px;
+				}
+			}
+		}
+	}
+}
+@media screen and (max-width: 1440px) {
+	.authendication-pages {
+		.content {
+			.wrapper {
+				header {
+					margin-top: 20px;
+					margin-bottom: 20px;
+				}
+				.shadow-card {
+					margin: 15px 0;
+					h2 {
+						margin-bottom: 20px;
+					}
+				}
+			}
+		}
+	}
+}
 @media screen and (max-width: 1280px) {
 	.authendication-pages {
 		.content {
