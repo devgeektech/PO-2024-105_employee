@@ -36,7 +36,8 @@ const StepThird = ({ formik, submitDetails }: any) => {
 
                       <div className="shadow-card">
                         <h2 className="text-center">
-                          Please filled the company details
+                          {/* Please filled the company details */}
+                          Vote for your company
                         </h2>
                         <p className="text-center">All fields are mandatory</p>
                         <div className="tab-content" id="myTabContent">
