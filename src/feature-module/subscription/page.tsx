@@ -152,7 +152,8 @@ export default function Subscription() {
                         </span>{" "}
                         13,500+ gyms & studios,
                       </li>
-                      <li>
+
+                      {/* <li>
                         <span>
                           <img
                             src="/assets/img/phone_iphone.svg"
@@ -175,7 +176,8 @@ export default function Subscription() {
                           />
                         </span>{" "}
                         8x/month virtual personal training,
-                      </li>
+                      </li> */}
+
                     </ul>
                     <div className="content-center">
                       {item._id === selectedPlanId && (
@@ -195,7 +197,7 @@ export default function Subscription() {
                         </button>
                       )}
                     </div>
-                    <div className="app-wrapper">
+                    {/* <div className="app-wrapper">
                       <p className="get">Apps</p>
                       <ul>
                         <li>
@@ -215,7 +217,7 @@ export default function Subscription() {
                           <h5>Fabulous</h5>
                         </li>
                       </ul>
-                    </div>
+                    </div> */}
                     {loading && (
                       <span className="p-3">
                         <Spinner animation="border" role="status">

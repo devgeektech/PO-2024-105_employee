@@ -94,7 +94,8 @@ export default function SubscriptionDetails() {
                       </span>{" "}
                       13,500+ gyms & studios,
                     </li>
-                    <li>
+
+                    {/* <li>
                       <span>
                         <img
                           src="/assets/img/phone_iphone.svg"
@@ -117,14 +118,15 @@ export default function SubscriptionDetails() {
                         />
                       </span>{" "}
                       8x/month virtual personal training,
-                    </li>
+                    </li> */}
+
                   </ul>
                   <div className="content-center">
                     <div className="active-plan-label">
                       <span className="check-icon">✔</span> Active plan
                     </div>
                   </div>
-                  <div className="app-wrapper">
+                  {/* <div className="app-wrapper">
                     <p className="get">Apps</p>
                     <ul>
                       <li>
@@ -144,7 +146,7 @@ export default function SubscriptionDetails() {
                         <h5>Fabulous</h5>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <button
                     type="button"
                     className="btn btn-dark w-100 mt-4"
