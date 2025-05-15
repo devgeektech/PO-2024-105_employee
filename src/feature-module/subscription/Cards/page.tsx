@@ -23,7 +23,7 @@ const SubscriptionCard = () => {
       >
         <Card.Body className="text-center">
           <Card.Title style={{ fontSize: "18px", fontWeight: "bold" }}>
-            Your subscription is live, and the fitness world is now your
+            Your plan is live, and the fitness world is now your
             playground!
           </Card.Title>
           <Card.Text style={{ fontSize: "14px", color: "#6c757d", marginTop: "10px" }}>

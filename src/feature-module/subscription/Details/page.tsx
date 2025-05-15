@@ -152,14 +152,14 @@ export default function SubscriptionDetails() {
                     className="btn btn-dark w-100 mt-4"
                     onClick={() => navigate(`${route.subscription}`)}
                   >
-                    Upgrade subscription
+                    Upgrade Plan
                   </button>
                   <button
                     type="button"
                     className="btn btn-outline-danger w-100 mt-3"
                     onClick={() => setModalStatus(true)}
                   >
-                    Cancel subscription
+                    Cancel plan
                   </button>
                 </div>
               </div>
