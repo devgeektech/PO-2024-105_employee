@@ -24,7 +24,12 @@ export const getClassDetails = async (id: any) => {
 };
 
 export const createPayment = (payload: any) => {
-  return http.post(`/subscription/createPayment`, payload);
+  const token = getUserToken();
+  return http.post(`/subscription/createPayment`, payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };
 
 export const deleteSubscription = () => {
