@@ -27,7 +27,7 @@ export const createPayment = (payload: any) => {
   const token = getUserToken();
   return http.post(`/subscription/createPayment`, payload, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `${token}`,
     },
   });
 };
