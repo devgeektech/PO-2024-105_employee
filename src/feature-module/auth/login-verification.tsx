@@ -177,7 +177,7 @@ const LoginVerification = () => {
                                     <input
                                       className={error ? "border-warning" : ""}
                                       key={index}
-                                      type="text"
+                                      type="number"
                                       placeholder="_"
                                       maxLength={1}
                                       value={digit}

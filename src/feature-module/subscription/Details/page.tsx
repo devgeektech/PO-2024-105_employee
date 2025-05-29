@@ -81,7 +81,7 @@ export default function SubscriptionDetails() {
                     <div className="d-flex flex-column align-items-start">
                     <h5>{item?.packageInfo?.name ? item.packageInfo.name.charAt(0).toUpperCase() + item.packageInfo.name.slice(1) : ""}</h5>
                       <h6 className="text-muted">
-                        <strong>${item?.price}</strong>
+                        <strong>EGP {item?.price}</strong>
                         <span>/ Per month</span>
                       </h6>
                     </div>
@@ -94,59 +94,12 @@ export default function SubscriptionDetails() {
                       </span>{" "}
                       13,500+ gyms & studios,
                     </li>
-
-                    {/* <li>
-                      <span>
-                        <img
-                          src="/assets/img/phone_iphone.svg"
-                          alt="phone_iphone"
-                        />
-                      </span>{" "}
-                      46 wellness apps,
-                    </li>
-                    <li>
-                      <span>
-                        <img src="/assets/img/exercise.svg" alt="exercise" />
-                      </span>{" "}
-                      Live stream workouts,
-                    </li>
-                    <li>
-                      <span>
-                        <img
-                          src="/assets/img/frame_person.svg"
-                          alt="frame_person"
-                        />
-                      </span>{" "}
-                      8x/month virtual personal training,
-                    </li> */}
-
                   </ul>
                   <div className="content-center">
                     <div className="active-plan-label">
                       <span className="check-icon">✔</span> Active plan
                     </div>
                   </div>
-                  {/* <div className="app-wrapper">
-                    <p className="get">Apps</p>
-                    <ul>
-                      <li>
-                        <img src="/assets/img/fabulous.png" alt="location" />
-                        <h5>Fabulous</h5>
-                      </li>
-                      <li>
-                        <img src="/assets/img/fabulous.png" alt="location" />
-                        <h5>Fabulous</h5>
-                      </li>
-                      <li>
-                        <img src="/assets/img/fabulous.png" alt="location" />
-                        <h5>Fabulous</h5>
-                      </li>
-                      <li>
-                        <img src="/assets/img/fabulous.png" alt="location" />
-                        <h5>Fabulous</h5>
-                      </li>
-                    </ul>
-                  </div> */}
                   <button
                     type="button"
                     className="btn btn-dark w-100 mt-4"
