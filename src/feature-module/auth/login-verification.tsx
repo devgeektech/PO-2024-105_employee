@@ -14,7 +14,7 @@ import http from "../../services/http.service";
 import { LANG } from "../../constants/language";
 import { resendVerifyCode } from "../../services/onBoardingService";
 import BackIcon from "../../icons/BackIcon";
-
+import "./style.scss"
 
 const LoginVerification = () => {
   const route = all_routes;

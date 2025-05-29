@@ -1,8 +1,6 @@
-body:has(.otpWrap) :root {
-  --vh: 100%;
+body:has(.otpWrap) {
   height: calc(var(--vh, 1vh) * 100);
 }
-
 // .vph-100 {
 //   height: calc(var(--vh, 1vh) * 100);
 // }
