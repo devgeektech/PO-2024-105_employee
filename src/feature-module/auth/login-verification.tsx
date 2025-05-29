@@ -162,12 +162,12 @@ const LoginVerification = () => {
                         <p className="text-center">
                           We have sent it to {user?.userDetail?.userDetail?.email}
                         </p>
-                        <div className="tab-content" id="myTabContent">
+                        <div className="tab-content1" id="myTabContent1">
                           <div
-                            className="tab-pane fade show active"
+                            className="tab-pane1 fade1 show1 active1"
                             id="user"
-                            role="tabpanel"
-                            aria-labelledby="user-tab"
+                            role="tabpane1l"
+                            aria-labelledby="user-tab1"
                           >
                             {/* Login Form */}
                             <form autoComplete="off" onSubmit={formik.handleSubmit}>
