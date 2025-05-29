@@ -70,6 +70,29 @@ const LoginVerification = () => {
     }
   };
 
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const paste = e.clipboardData.getData("text");
+  
+    if (!/^\d+$/.test(paste)) return; // Only allow digits
+  
+    const digits = paste.slice(0, 4).split(""); // adjust length if you want more OTP boxes
+  
+    const newOtp = [...otp];
+    digits.forEach((digit, i) => {
+      if (i < newOtp.length) {
+        newOtp[i] = digit;
+      }
+    });
+  
+    setOtp(newOtp);
+    formik.setFieldValue("otp", newOtp);
+  
+    // Focus the next empty input
+    const nextIndex = digits.length < otp.length ? digits.length : otp.length - 1;
+    inputRefs.current[nextIndex]?.focus();
+  };  
+
   const loginValidationSchema = Yup.object().shape({
   });
 
@@ -167,6 +190,7 @@ const LoginVerification = () => {
                                         }
                                       }}
                                       ref={(el) => (inputRefs.current[index] = el)}
+                                      onPaste={(e) => handlePaste(e)}
                                     />
                                   ))}
                                 </div>
