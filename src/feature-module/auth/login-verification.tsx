@@ -139,7 +139,7 @@ const LoginVerification = () => {
   return (
     <>
       {/* Main Wrapper */}
-      <div className="main-wrapper authendication-pages">
+      <div className="main-wrapper authendication-pages otpWrap">
         {/* Page Content */}
         <div className="content">
           <div className="container wrapper no-padding">
