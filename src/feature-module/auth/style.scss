@@ -307,6 +307,30 @@ p.warningMessage {
   border: 1px solid #E77F16;
 }
 
+.custom-date-input::-webkit-datetime-edit,
+.custom-date-input::-webkit-datetime-edit-fields-wrapper,
+.custom-date-input::-webkit-datetime-edit-text,
+.custom-date-input::-webkit-datetime-edit-month-field,
+.custom-date-input::-webkit-datetime-edit-day-field,
+.custom-date-input::-webkit-datetime-edit-year-field {
+  color: transparent;
+}
+
+.custom-date-input:focus::-webkit-datetime-edit {
+  color: #000; /* show typed date on focus */
+}
+
+.custom-date-placeholder {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c6868;
+  pointer-events: none;
+  font-size: 0.95rem;
+}
+
+
 @media only screen and (max-width: 480px) {
   body:has(.otpWrap) .Toastify__toast-container,  .Toastify__toast-container {
     max-width: 320px;

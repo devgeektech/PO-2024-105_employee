@@ -26,9 +26,31 @@ const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any
       inputRefs.current[index - 1]?.focus();
     }
   };
-
   console.log('submitDetails -------- ', submitDetails);
-  
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const paste = e.clipboardData.getData("text");
+
+    if (!/^\d+$/.test(paste)) return; // Only allow digits
+
+    const digits = paste.slice(0, 4).split(""); // adjust length if you want more OTP boxes
+
+    const newOtp = [...otp];
+    digits.forEach((digit, i) => {
+      if (i < newOtp.length) {
+        newOtp[i] = digit;
+      }
+    });
+
+    setOtp(newOtp);
+    formik.setFieldValue("otp", newOtp);
+
+    // Focus the next empty input
+    const nextIndex = digits.length < otp.length ? digits.length : otp.length - 1;
+    inputRefs.current[nextIndex]?.focus();
+  };
+
 
   const handleResendCode = async () => {
     // Logic to resend the code
@@ -39,7 +61,7 @@ const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any
         setError(null)
       }
       setOtp(["", "", "", ""]);
-    } 
+    }
     catch (error) {
       if (error instanceof AxiosError) {
         toast.error(error.response?.data?.responseMessage)
@@ -84,7 +106,7 @@ const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any
                                   <input
                                     className={error ? "border-warning" : ""}
                                     key={index}
-                                    type="text"
+                                    type="number"
                                     placeholder="_"
                                     maxLength={1}
                                     value={digit}
@@ -97,6 +119,7 @@ const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any
                                       }
                                     }}
                                     ref={(el) => (inputRefs.current[index] = el)}
+                                    onPaste={(e) => handlePaste(e)}
                                   />
                                 ))}
                               </div>
@@ -139,25 +162,25 @@ const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any
             </div>
             <div className="col-12 col-sm-12 col-lg-8 no-padding">
               <div className="banner-bg login">
-                  <div className="row no-margin h100">
-                    <div className="col-sm-10 col-md-10 col-lg-12">
-                      {/* <div className="h-100 d-flex justify-content-center align-items-center"></div> */}
-                        <div className="row h-100">
-                          <div className="col-md-6 h50">
-                            <img src="/assets/img/authOne.png" className="img-fluid w-100 h-100" alt="authOne"/>
-                          </div>
-                          <div className="col-md-6  h50">
-                            <img src="/assets/img/authTwo.png" className="img-fluid  w-100 h-100" alt="authTwo"/>
-                          </div>
-                          <div className="col-md-6  h50">
-                            <img src="/assets/img/authThree.png" className="img-fluid w-100 h-100" alt="authOne"/>
-                          </div>
-                          <div className="col-md-6  h50">
-                            <img src="/assets/img/authFour.png" className="img-fluid  w-100 h-100" alt="authTwo"/>
-                          </div>
-                        </div>
+                <div className="row no-margin h100">
+                  <div className="col-sm-10 col-md-10 col-lg-12">
+                    {/* <div className="h-100 d-flex justify-content-center align-items-center"></div> */}
+                    <div className="row h-100">
+                      <div className="col-md-6 h50">
+                        <img src="/assets/img/authOne.png" className="img-fluid w-100 h-100" alt="authOne" />
+                      </div>
+                      <div className="col-md-6  h50">
+                        <img src="/assets/img/authTwo.png" className="img-fluid  w-100 h-100" alt="authTwo" />
+                      </div>
+                      <div className="col-md-6  h50">
+                        <img src="/assets/img/authThree.png" className="img-fluid w-100 h-100" alt="authOne" />
+                      </div>
+                      <div className="col-md-6  h50">
+                        <img src="/assets/img/authFour.png" className="img-fluid  w-100 h-100" alt="authTwo" />
+                      </div>
                     </div>
                   </div>
+                </div>
               </div>
             </div>
           </div>

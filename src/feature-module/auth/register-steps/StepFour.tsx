@@ -4,6 +4,7 @@ import UserIcon from "../../../icons/UserIcon";
 import ErrorText from "../../../core/components/error-text";
 import PhoneIcon from "../../../icons/PhoneIcon";
 import CalendarIcon from "../../../icons/CalendarIcon";
+import "../style.scss"
 
 const StepFour = ({ formik, submitDetails }: any) => {
   useEffect(() => {
@@ -106,7 +107,7 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                 </div>
                               </div>
 
-                              <div className="form-group">
+                              {/* <div className="form-group">
                                 <div className="group-img iconLeft  position-relative">
                                   <label><CalendarIcon /></label>
                                   <input
@@ -122,9 +123,29 @@ const StepFour = ({ formik, submitDetails }: any) => {
                                     }}
                                   />
                                 </div>
-                                {/* <div className="text-start">
-                                  <ErrorText show={formik.errors.dob && formik.touched.dob} message={formik.errors?.dob} />
-                                </div> */}
+                              </div> */}
+
+                              <div className="form-group position-relative">
+                                <div className="group-img iconLeft position-relative">
+                                  <label><CalendarIcon /></label>
+                                  <input
+                                    type="date"
+                                    id="date"
+                                    name="dob"
+                                    className="form-control commonInput custom-date-input"
+                                    max={new Date(new Date().setFullYear(new Date().getFullYear() - 16))
+                                      .toISOString()
+                                      .split("T")[0]}
+                                    onKeyDown={(e) => e.preventDefault()}
+                                    onChange={(ev: any) => {
+                                      formik.setFieldValue("dob", ev.target.value);
+                                    }}
+                                    value={formik.values.dob}
+                                  />
+                                  {!formik.values.dob && (
+                                    <span className="custom-date-placeholder">Optional: Date of Birth</span>
+                                  )}
+                                </div>
                               </div>
 
                               <button
@@ -156,23 +177,23 @@ const StepFour = ({ formik, submitDetails }: any) => {
               </div>
               <div className="col-12 col-sm-12 col-md-12 col-lg-8 no-padding">
                 <div className="banner-bg register">
-                <div className="row no-margin h100">
+                  <div className="row no-margin h100">
                     <div className="col-sm-10 col-md-10 col-lg-12">
                       {/* <div className="h-100 d-flex justify-content-center align-items-center"></div> */}
-                        <div className="row h-100">
-                          <div className="col-md-6 h50">
-                            <img src="/assets/img/authOne.png" className="img-fluid w-100 h-100" alt="authOne"/>
-                          </div>
-                          <div className="col-md-6  h50">
-                            <img src="/assets/img/authTwo.png" className="img-fluid  w-100 h-100" alt="authTwo"/>
-                          </div>
-                          <div className="col-md-6  h50">
-                            <img src="/assets/img/authThree.png" className="img-fluid w-100 h-100" alt="authOne"/>
-                          </div>
-                          <div className="col-md-6  h50">
-                            <img src="/assets/img/authFour.png" className="img-fluid  w-100 h-100" alt="authTwo"/>
-                          </div>
+                      <div className="row h-100">
+                        <div className="col-md-6 h50">
+                          <img src="/assets/img/authOne.png" className="img-fluid w-100 h-100" alt="authOne" />
                         </div>
+                        <div className="col-md-6  h50">
+                          <img src="/assets/img/authTwo.png" className="img-fluid  w-100 h-100" alt="authTwo" />
+                        </div>
+                        <div className="col-md-6  h50">
+                          <img src="/assets/img/authThree.png" className="img-fluid w-100 h-100" alt="authOne" />
+                        </div>
+                        <div className="col-md-6  h50">
+                          <img src="/assets/img/authFour.png" className="img-fluid  w-100 h-100" alt="authTwo" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
