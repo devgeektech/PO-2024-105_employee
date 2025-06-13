@@ -40,7 +40,7 @@ const Login = () => {
         const result = await loginUser(values);
 
         if (result.status == 200) {
-          toast.success('The profile verification code has been sent to your email.');
+          // toast.success('The profile verification code has been sent to your email.');
           localStorage.setItem('token', result.data?.data?.token);
           localStorage.setItem('id', result.data?.data?._id);
 

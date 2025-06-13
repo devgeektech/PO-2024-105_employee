@@ -90,7 +90,7 @@ const Signin = () => {
             setCompanyId({companyId: validateEmail?.data?.data?.companyId})
 
             if (result.status == 200) {
-              toast.success(result.data.responseMessage);
+              // toast.success(result.data.responseMessage);
               setStep(2);
             } else if (result.status == 404) {
               toast.error("Something went wrong");
@@ -122,7 +122,7 @@ const Signin = () => {
         if (otpString.length === 4 && submitDetails.email != '') {
           const result: any = await verifyOtp({ email: submitDetails.email, otp: otpString });
           if (result.status == 200) {
-            toast.success("Otp Verified Successfully");
+            // toast.success("Otp Verified Successfully");
             setError(null)
             setStep(4);
           }
@@ -155,7 +155,7 @@ const Signin = () => {
         };
         const result = await sendCompanyReferral(stepFourPayload);
         if (result.status == 200) {
-          toast.success(result.data.responseMessage);
+          // toast.success(result.data.responseMessage);
           navigate("/auth/thank-you");
         }
         else if (result.status == 404) {
@@ -184,7 +184,7 @@ const Signin = () => {
         const result = await addAccountDetails(partnerData);
 
         if (result.status == 200) {
-          toast.success(result.data.responseMessage);
+          // toast.success(result.data.responseMessage);
           navigate("/auth/login");
         } else if (result.status == 404) {
           toast.error("Something went wrong");

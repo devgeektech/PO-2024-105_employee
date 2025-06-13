@@ -38,7 +38,7 @@ const ForgotPassword = () => {
       try {
         const { data: { result } } = await forgotPassword(values.email);
         console.log(result);
-        toast.success('Password reset link sent successfully!');
+        // toast.success('Password reset link sent successfully!');
         setError(null);
 
         navigate('/auth/confirm-email', { state: { email:values.email } });

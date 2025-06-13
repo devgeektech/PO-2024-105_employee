@@ -32,7 +32,7 @@ const ValidationRedirect = () => {
      try {
       const result= await loginByToken({token});
       if(result.status == 200){
-        toast.success(LANG.LOGIN_SUCCESSFULLY);
+        // toast.success(LANG.LOGIN_SUCCESSFULLY);
         localStorage.setItem('token', result.data?.data?.token);
         localStorage.setItem('id', result.data?.data?._id);
         localStorage.setItem('roles', JSON.stringify(result.data?.data?.role));

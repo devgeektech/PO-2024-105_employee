@@ -57,7 +57,7 @@ const LoginVerification = () => {
     try {
       const result: any = await resendVerifyCode({ email: user?.userDetail?.userDetail?.email });
       if (result.status == 200) {
-        toast.success(LANG.OTP_SEND);
+        // toast.success(LANG.OTP_SEND);
         setError(null)
       }
       setOtp(["", "", "", ""]);
@@ -110,7 +110,7 @@ const LoginVerification = () => {
         const result = await loginVerification({ email: user?.userDetail?.userDetail?.email, otp: otpString });
 
         if (result.status == 200) {
-          toast.success(LANG.LOGIN_SUCCESSFULLY);
+          // toast.success(LANG.LOGIN_SUCCESSFULLY);
           localStorage.setItem('token', result.data?.data?.token);
           localStorage.setItem('id', result.data?.data?._id);
 
