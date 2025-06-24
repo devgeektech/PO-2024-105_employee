@@ -25,8 +25,18 @@ export const getClassDetails = async (id: any) => {
 
 export const createPayment = (payload: any) => {
   const token = getUserToken();
-  
+
   return http.post(`/subscription/createPayment`, payload, {
+    headers: {
+      Authorization: `${token}`,
+    },
+  });
+};
+
+export const createFreePayment = (payload: any) => {
+  const token = getUserToken();
+
+  return http.post(`/subscription/createFreePayment`, payload, {
     headers: {
       Authorization: `${token}`,
     },

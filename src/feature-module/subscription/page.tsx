@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Spinner, Tab } from 'react-bootstrap';
 import CommonCard from '../../core/components/commonCard';
-import { createPayment, getEmployeePlan, getSubscriptionList } from '../../services/subscriptions.service';
+import { createFreePayment, createPayment, getEmployeePlan, getSubscriptionList } from '../../services/subscriptions.service';
 import { ButtonGroup, ToggleButton, Container } from "react-bootstrap";
 import Button from 'react-bootstrap/Button'
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
+import { all_routes } from '../router/all_routes';
 
 
 export default function Subscription() {
@@ -18,6 +19,10 @@ export default function Subscription() {
   const [selectedPlan, setSelectedPlan] = useState("Starter");
   const [loading, setLoading] = useState(false);
   const [selectedPlanId, setSelectedPlanId] = useState("-1");
+  const navigate = useNavigate();
+  const route = all_routes;
+
+
   const handlePlanChange = (plan: any) => {
     let array = []
     array.push(plan)
@@ -42,15 +47,24 @@ export default function Subscription() {
       subscriptionId: item._id,
       packageId: item.packageId
     };
+    
     try {
-      setLoading(true)
-      const result = await createPayment(payload);
-      if (result.status == 200) {
-        let client_secret = result?.data?.data?.client_secret
-        let publice_key = "egy_pk_test_VqfQMNR7BLSrbC6RZZYtKKWSWeBSlOJY"
-        let url = `https://accept.paymob.com/unifiedcheckout/?publicKey=${publice_key}&clientSecret=${client_secret}`;
-        window.location.href = url
+      setLoading(true);
+
+      if (payload?.amount == 0) {
+        const result = await createFreePayment(payload);
         setLoading(false)
+        navigate(`${route.subscriptionSuccess}`);
+      }
+      else {
+        const result = await createPayment(payload);
+        if (result.status == 200) {
+          let client_secret = result?.data?.data?.client_secret
+          let publice_key = "egy_pk_test_VqfQMNR7BLSrbC6RZZYtKKWSWeBSlOJY"
+          let url = `https://accept.paymob.com/unifiedcheckout/?publicKey=${publice_key}&clientSecret=${client_secret}`;
+          window.location.href = url
+          setLoading(false)
+        }
       }
     } catch (error) {
       if (error instanceof AxiosError) {
