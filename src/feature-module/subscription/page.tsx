@@ -21,6 +21,7 @@ export default function Subscription() {
   const [selectedPlanId, setSelectedPlanId] = useState("-1");
   const navigate = useNavigate();
   const route = all_routes;
+  const [isPlansLoading, setIsPlansLoading] = useState(true);   // for plans API
 
 
   const handlePlanChange = (plan: any) => {
@@ -47,7 +48,7 @@ export default function Subscription() {
       subscriptionId: item._id,
       packageId: item.packageId
     };
-    
+
     try {
       setLoading(true);
 
@@ -93,6 +94,8 @@ export default function Subscription() {
 
   const getSubscriptions = async () => {
     try {
+      setIsPlansLoading(true); // start loading
+
       const result = await getSubscriptionList();
       console.log("API Response:", result?.data?.data); // Debugging
       if (Array.isArray(result?.data?.data) && result?.data?.data?.length > 0) {
@@ -102,8 +105,10 @@ export default function Subscription() {
         setSubscriptionList(array)
         setplanList(result?.data?.data)
       }
+      setIsPlansLoading(false); // stop loading
     } catch (error) {
       console.error("Error fetching subscriptions:", error);
+      setIsPlansLoading(false); // stop loading
     }
   };
 
@@ -206,7 +211,9 @@ export default function Subscription() {
             </div>
           ))}
         {
-          subscriptionList && subscriptionList.length == 0 && plansList && plansList.length == 0 &&
+          !isPlansLoading &&
+          subscriptionList?.length == 0 &&
+          plansList?.length == 0 &&
           (
             <div className="centered-message">
               No plans has been assigned to this company. Please contact support for assistance.
