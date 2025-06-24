@@ -57,7 +57,7 @@ const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any
     try {
       const result: any = await resendVerifyCode({ email: submitDetails.email });
       if (result.status == 200) {
-        toast.success(LANG.OTP_SEND);
+        // toast.success(LANG.OTP_SEND);
         setError(null)
       }
       setOtp(["", "", "", ""]);

@@ -10,6 +10,9 @@ import StepSecond from "./register-steps/StepSecond";
 import StepThird from "./register-steps/StepThird"
 import StepFour from "./register-steps/StepFour"
 import { addAccountDetails, addEmployeeProfile, checkCompanyStatus, sendCompanyReferral, verifyOtp } from "../../services/onBoardingService";
+import { useDispatch } from "react-redux";
+import { setLogin, setUserDetail } from "../../core/data/redux/user/userSlice";
+import http from "../../services/http.service";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
@@ -67,6 +70,7 @@ const Signin = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const [submitDetails, setSubmitDetails] = useState({ email: "" });
   const [companyId, setCompanyId] = useState<any>("");
+  const dispatch = useDispatch();
 
 
   useEffect(() => {
@@ -183,9 +187,15 @@ const Signin = () => {
         };
         const result = await addAccountDetails(partnerData);
 
-        if (result.status == 200) {
-          // toast.success(result.data.responseMessage);
-          navigate("/auth/login");
+        if (result.status == 200) {          
+          localStorage.setItem('token', result.data?.data?.token);
+          localStorage.setItem('id', result.data?.data?._id);
+
+          dispatch(setLogin(true));
+          dispatch(setUserDetail({ userDetail: result.data?.data }));
+          http.defaults.headers['Authorization'] = result.data?.data?.token;
+          navigate(`${route.subscription}?token=${result.data?.data?.token || localStorage.getItem("token")}`);
+
         } else if (result.status == 404) {
           toast.error("Something went wrong");
         }
