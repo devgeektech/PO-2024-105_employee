@@ -106,7 +106,10 @@ const StepSecond = ({ formik, otp, setOtp, submitDetails, error, setError }: any
                                   <input
                                     className={error ? "border-warning" : ""}
                                     key={index}
-                                    type="number"
+                                    // type="number"
+                                    type="tel"
+                                    inputMode="numeric"
+                                    pattern="[0-9]*"
                                     placeholder="_"
                                     maxLength={1}
                                     value={digit}
