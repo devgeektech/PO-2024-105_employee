@@ -38,8 +38,9 @@ const SubscriptionCard = () => {
               borderRadius: "20px",
               padding: "10px",
             }}
-            onClick={()=> {
-              navigate(`${route.subscriptionRedirect}`)
+            onClick={() => {
+              // navigate(`${route.subscriptionRedirect}`)
+              navigate(`${route.subscriptionRedirect}?token=${localStorage.getItem("token") || ""}`)
             }}
           >
             Home
