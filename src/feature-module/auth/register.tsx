@@ -91,7 +91,7 @@ const Signin = () => {
 
             const result = await addEmployeeProfile({ ...values, companyId: validateEmail?.data?.data?.companyId });
             setSubmitDetails({ ...values });
-            setCompanyId({companyId: validateEmail?.data?.data?.companyId})
+            setCompanyId({ companyId: validateEmail?.data?.data?.companyId })
 
             if (result.status == 200) {
               // toast.success(result.data.responseMessage);
@@ -187,16 +187,21 @@ const Signin = () => {
         };
         const result = await addAccountDetails(partnerData);
 
-        if (result.status == 200) {          
+        if (result.status == 200) {
           localStorage.setItem('token', result.data?.data?.token);
           localStorage.setItem('id', result.data?.data?._id);
 
           dispatch(setLogin(true));
           dispatch(setUserDetail({ userDetail: result.data?.data }));
           http.defaults.headers['Authorization'] = result.data?.data?.token;
-          navigate(`${route.subscription}?token=${result.data?.data?.token || localStorage.getItem("token")}`);
 
-        } else if (result.status == 404) {
+          const token = result.data?.data?.token || localStorage.getItem("token");
+          const id = result.data?.data?._id || localStorage.getItem("id");
+
+          navigate(`${route.subscription}?token=${token}&id=${id}`);
+          // navigate(`${route.subscription}?token=${result.data?.data?.token || localStorage.getItem("token")}`);
+        }
+        else if (result.status == 404) {
           toast.error("Something went wrong");
         }
       } catch (error) {
