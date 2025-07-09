@@ -40,7 +40,7 @@ const SubscriptionCard = () => {
             }}
             onClick={() => {
               // navigate(`${route.subscriptionRedirect}`)
-              navigate(`${route.subscriptionRedirect}?token=${localStorage.getItem("token") || ""}`)
+              navigate(`${route.subscriptionRedirect}?token=${localStorage.getItem("token") || ""}&id=${localStorage.getItem("id") || ""}`)
             }}
           >
             Home

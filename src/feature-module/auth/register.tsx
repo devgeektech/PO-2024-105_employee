@@ -198,7 +198,7 @@ const Signin = () => {
           const token = result.data?.data?.token || localStorage.getItem("token");
           const id = result.data?.data?._id || localStorage.getItem("id");
 
-          navigate(`${route.subscription}?token=${token}&id=${id}`);
+          navigate(`${route.subscription}?token=${token}`);
           // navigate(`${route.subscription}?token=${result.data?.data?.token || localStorage.getItem("token")}`);
         }
         else if (result.status == 404) {
