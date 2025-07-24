@@ -61,7 +61,11 @@ export default function Subscription() {
         const result = await createPayment(payload);
         if (result.status == 200) {
           let client_secret = result?.data?.data?.client_secret
-          let publice_key = "egy_pk_test_VqfQMNR7BLSrbC6RZZYtKKWSWeBSlOJY"
+          // let publice_key = "egy_pk_test_VqfQMNR7BLSrbC6RZZYtKKWSWeBSlOJY"
+          let publice_key = "egy_pk_live_WgJvanqlfXqbWdkF4rYG27W9bPYUSc7r";
+          console.log('result?.data?.data ============ ', result?.data?.data);
+          
+
           let url = `https://accept.paymob.com/unifiedcheckout/?publicKey=${publice_key}&clientSecret=${client_secret}`;
           window.location.href = url
           setLoading(false)
