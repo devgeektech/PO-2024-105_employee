@@ -1,90 +1,122 @@
 .plan-selector {
-    border: 1px solid #ddd;
-    border-radius: 50px;
-    overflow: hidden;
-    background-color: #f5f5f5;
-    width: fit-content;
-  }
-  
-  .plan-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 0;
-    flex: 1;
-  }
-  
-  .plan-button.active-plan {
-    background-color: #000;
-    color: #fff;
-    border-radius: 20px;
-  }
-  
-  .plan-button:hover {
-    background-color: #e9ecef;
-  }
-  
-  .plan-selector .btn {
-    border: none;
-    outline: none;
-    box-shadow: none;
-  }
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  width: fit-content;
+}
 
-  .custom-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: #0e1621; /* Dark background color */
-    color: #fff; /* White text color */
+.plan-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 0;
+  flex: 1;
+}
+
+.plan-button.active-plan {
+  background-color: #000;
+  color: #fff;
+  border-radius: 20px;
+}
+
+.plan-button:hover {
+  background-color: #e9ecef;
+}
+
+.plan-selector .btn {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.custom-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #0e1621;
+  /* Dark background color */
+  color: #fff;
+  /* White text color */
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 25px;
+  /* Rounded corners */
+  cursor: pointer;
+  width: fit-content;
+  transition: background-color 0.3s ease;
+}
+
+.custom-btn .arrow {
+  margin-left: 8px;
+}
+
+.custom-btn:hover {
+  background-color: #1a2430;
+}
+
+.content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.active-plan-label {
+  background-color: #4285f4;
+  /* Light blue background */
+  color: #fff;
+  /* White text */
+  border-radius: 30px;
+  /* Rounded corners */
+  padding: 10px 20px;
+  /* Add padding for height and width */
+  display: inline-flex;
+  /* Inline flex layout */
+  align-items: center;
+  /* Vertically center content */
+  gap: 8px;
+  /* Space between icon and text */
+  font-weight: 500;
+  /* Semi-bold text */
+  font-size: 16px;
+  /* Font size */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+  cursor: default;
+  /* Default cursor to show it's non-interactive */
+  opacity: 1;
+  /* Fully visible */
+  width: 90%;
+  justify-content: center
+}
+
+.check-icon {
+  font-size: 18px;
+  /* Icon size */
+}
+
+.custom-bullet-list {
+  padding-left: 0.2rem; // Add left padding to show bullets clearly
+
+  li {
+    position: relative;
     font-size: 16px;
-    font-weight: 500;
-    border: none;
-    border-radius: 25px; /* Rounded corners */
-    cursor: pointer;
-    width: fit-content;
-    transition: background-color 0.3s ease;
-  }
-  
-  .custom-btn .arrow {
-    margin-left: 8px; 
-  }
-  
-  .custom-btn:hover {
-    background-color: #1a2430; 
-  }
+    line-height: 1.8;
+    padding-left: 1.0rem; // Space between bullet and text
 
-  .content-center {
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    margin: 0; 
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      font-size: 22px; // Bigger bullet
+      line-height: 1;
+      color: #000; // Adjust color if needed
+    }
   }
-
-  .active-plan-label {
-    background-color: #4285f4; /* Light blue background */
-    color: #fff; /* White text */
-    border-radius: 30px; /* Rounded corners */
-    padding: 10px 20px; /* Add padding for height and width */
-    display: inline-flex; /* Inline flex layout */
-    align-items: center; /* Vertically center content */
-    gap: 8px; /* Space between icon and text */
-    font-weight: 500; /* Semi-bold text */
-    font-size: 16px; /* Font size */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    cursor: default; /* Default cursor to show it's non-interactive */
-    opacity: 1; /* Fully visible */
-    width: 90%;
-    justify-content: center
-  }
-  
-  .check-icon {
-    font-size: 18px; /* Icon size */
-  }
-
-@media only screen and (max-width: 767px) {
-
 }
 
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 767px) {}
 
-}
+@media only screen and (max-width: 575px) {}

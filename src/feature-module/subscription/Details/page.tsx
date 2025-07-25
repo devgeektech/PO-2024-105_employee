@@ -54,7 +54,7 @@ export default function SubscriptionDetails() {
       if (result?.data?.data[0]?.subscriptionDetails) {
         let array = [];
         array.push(result?.data?.data[0]?.subscriptionDetails);
-        console.log(array,">>> array :::")
+        console.log(array, ">>> array :::")
         setSubscriptionList(array);
       } else {
         navigate(`${route.subscription}`);
@@ -79,7 +79,7 @@ export default function SubscriptionDetails() {
                       <img src="/assets/img/paperPlane.png" alt="paperPlane" />
                     </div>
                     <div className="d-flex flex-column align-items-start">
-                    <h5>{item?.packageInfo?.name ? item.packageInfo.name.charAt(0).toUpperCase() + item.packageInfo.name.slice(1) : ""}</h5>
+                      <h5>{item?.packageInfo?.name ? item.packageInfo.name.charAt(0).toUpperCase() + item.packageInfo.name.slice(1) : ""}</h5>
                       <h6 className="text-muted">
                         <strong>EGP {item?.price}</strong>
                         <span>/ Per month</span>
@@ -87,14 +87,22 @@ export default function SubscriptionDetails() {
                     </div>
                   </div>
                   <p className="get">Get access to</p>
-                  <ul className="list-unstyled">
+
+                  {/* <ul className="list-unstyled">
                     <li>
                       <span>
                         <img src="/assets/img/location.svg" alt="location" />
                       </span>{" "}
                       13,500+ gyms & studios,
                     </li>
+                  </ul> */}
+
+                  <ul className="list-unstyled custom-bullet-list">
+                    {item.planDescription1 && <li>{item.planDescription1}</li>}
+                    {item.planDescription2 && <li>{item.planDescription2}</li>}
+                    {item.planDescription3 && <li>{item.planDescription3}</li>}
                   </ul>
+
                   <div className="content-center">
                     <div className="active-plan-label">
                       <span className="check-icon">✔</span> Active plan
