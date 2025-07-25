@@ -98,9 +98,9 @@ export default function SubscriptionDetails() {
                   </ul> */}
 
                   <ul className="list-unstyled custom-bullet-list">
-                    {item.planDescription1 && <li>{item.planDescription1}</li>}
-                    {item.planDescription2 && <li>{item.planDescription2}</li>}
-                    {item.planDescription3 && <li>{item.planDescription3}</li>}
+                    {item.packageInfo?.description1 && <li>{item.packageInfo?.description1}</li>}
+                    {item.packageInfo?.description2 && <li>{item.packageInfo?.description2}</li>}
+                    {item.packageInfo?.description3 && <li>{item.packageInfo?.description3}</li>}
                   </ul>
 
                   <div className="content-center">
